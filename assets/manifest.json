@@ -1,0 +1,417 @@
+{
+  "version": "0.1.0",
+  "platform": "iPad landscape",
+  "basedOn": "PRD v1.0",
+  "note": "sfx/voice 全部为占位素材，可按同名替换",
+  "assets": [
+    {
+      "id": "board_5x5",
+      "path": "board/board_5x5.svg",
+      "type": "board"
+    },
+    {
+      "id": "board_7x7",
+      "path": "board/board_7x7.svg",
+      "type": "board"
+    },
+    {
+      "id": "board_9x9",
+      "path": "board/board_9x9.svg",
+      "type": "board"
+    },
+    {
+      "id": "capture_bird_wing_down",
+      "path": "fx/capture_bird_wing_down.svg",
+      "type": "fx"
+    },
+    {
+      "id": "capture_bird_wing_up",
+      "path": "fx/capture_bird_wing_up.svg",
+      "type": "fx"
+    },
+    {
+      "id": "hand_link",
+      "path": "fx/hand_link.svg",
+      "type": "fx"
+    },
+    {
+      "id": "hint_ring",
+      "path": "fx/hint_ring.svg",
+      "type": "fx"
+    },
+    {
+      "id": "liberty_star",
+      "path": "fx/liberty_star.svg",
+      "type": "fx"
+    },
+    {
+      "id": "liberty_star_last",
+      "path": "fx/liberty_star_last.svg",
+      "type": "fx"
+    },
+    {
+      "id": "sfx_capture_bird",
+      "path": "sfx/sfx_capture_bird.m4a",
+      "type": "sfx",
+      "durationMs": 240,
+      "placeholder": true,
+      "replaceable": true,
+      "desc": "提子(小鸟)",
+      "source": "程序合成(numpy+ffmpeg)，峰值约 -12~-18 dBFS"
+    },
+    {
+      "id": "sfx_complete",
+      "path": "sfx/sfx_complete.m4a",
+      "type": "sfx",
+      "durationMs": 960,
+      "placeholder": true,
+      "replaceable": true,
+      "desc": "完成",
+      "source": "程序合成(numpy+ffmpeg)，峰值约 -12~-18 dBFS"
+    },
+    {
+      "id": "sfx_connect",
+      "path": "sfx/sfx_connect.m4a",
+      "type": "sfx",
+      "durationMs": 450,
+      "placeholder": true,
+      "replaceable": true,
+      "desc": "连接成功",
+      "source": "程序合成(numpy+ffmpeg)，峰值约 -12~-18 dBFS"
+    },
+    {
+      "id": "sfx_correct",
+      "path": "sfx/sfx_correct.m4a",
+      "type": "sfx",
+      "durationMs": 530,
+      "placeholder": true,
+      "replaceable": true,
+      "desc": "做对了",
+      "source": "程序合成(numpy+ffmpeg)，峰值约 -12~-18 dBFS"
+    },
+    {
+      "id": "sfx_place",
+      "path": "sfx/sfx_place.m4a",
+      "type": "sfx",
+      "durationMs": 120,
+      "placeholder": true,
+      "replaceable": true,
+      "desc": "落子",
+      "source": "程序合成(numpy+ffmpeg)，峰值约 -12~-18 dBFS"
+    },
+    {
+      "id": "sfx_preview",
+      "path": "sfx/sfx_preview.m4a",
+      "type": "sfx",
+      "durationMs": 80,
+      "placeholder": true,
+      "replaceable": true,
+      "desc": "预览/按压",
+      "source": "程序合成(numpy+ffmpeg)，峰值约 -12~-18 dBFS"
+    },
+    {
+      "id": "sfx_sticker",
+      "path": "sfx/sfx_sticker.m4a",
+      "type": "sfx",
+      "durationMs": 730,
+      "placeholder": true,
+      "replaceable": true,
+      "desc": "贴纸",
+      "source": "程序合成(numpy+ffmpeg)，峰值约 -12~-18 dBFS"
+    },
+    {
+      "id": "sfx_tap_invalid",
+      "path": "sfx/sfx_tap_invalid.m4a",
+      "type": "sfx",
+      "durationMs": 150,
+      "placeholder": true,
+      "replaceable": true,
+      "desc": "不可落点(极轻)",
+      "source": "程序合成(numpy+ffmpeg)，峰值约 -12~-18 dBFS"
+    },
+    {
+      "id": "sfx_try_again",
+      "path": "sfx/sfx_try_again.m4a",
+      "type": "sfx",
+      "durationMs": 430,
+      "placeholder": true,
+      "replaceable": true,
+      "desc": "再试试(温和)",
+      "source": "程序合成(numpy+ffmpeg)，峰值约 -12~-18 dBFS"
+    },
+    {
+      "id": "stone_black_blink",
+      "path": "stones/stone_black_blink.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "stone_black_happy",
+      "path": "stones/stone_black_happy.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "stone_black_nervous",
+      "path": "stones/stone_black_nervous.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "stone_black_normal",
+      "path": "stones/stone_black_normal.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "stone_black_plain",
+      "path": "stones/stone_black_plain.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "stone_black_preview",
+      "path": "stones/stone_black_preview.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "stone_white_blink",
+      "path": "stones/stone_white_blink.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "stone_white_happy",
+      "path": "stones/stone_white_happy.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "stone_white_nervous",
+      "path": "stones/stone_white_nervous.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "stone_white_normal",
+      "path": "stones/stone_white_normal.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "stone_white_plain",
+      "path": "stones/stone_white_plain.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "stone_white_preview",
+      "path": "stones/stone_white_preview.svg",
+      "type": "stones",
+      "viewBox": "0 0 100 100",
+      "note": "直径=格距×0.92 渲染"
+    },
+    {
+      "id": "vo_cat_captured",
+      "path": "voice/vo_cat_captured.mp3",
+      "type": "voice",
+      "durationMs": 3480,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "吃掉啦！小猫跳出来啦！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_cat_count_question",
+      "path": "voice/vo_cat_count_question.mp3",
+      "type": "voice",
+      "durationMs": 2568,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "笼子还有几个洞呢？",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_cat_intro",
+      "path": "voice/vo_cat_intro.mp3",
+      "type": "voice",
+      "durationMs": 7416,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "坏狐狸把小猫关起来了！数一数，狐狸还有几个呼吸的小洞？",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_cat_one_left",
+      "path": "voice/vo_cat_one_left.mp3",
+      "type": "voice",
+      "durationMs": 3960,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "狐狸只剩一个洞啦，快堵住它！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_common_cant_place",
+      "path": "voice/vo_common_cant_place.mp3",
+      "type": "voice",
+      "durationMs": 3504,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "这里放不下哦，换个路口吧。",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_common_complete",
+      "path": "voice/vo_common_complete.mp3",
+      "type": "voice",
+      "durationMs": 2544,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "今天的任务完成啦！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_common_correct_1",
+      "path": "voice/vo_common_correct_1.mp3",
+      "type": "voice",
+      "durationMs": 1872,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "太棒啦！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_common_correct_2",
+      "path": "voice/vo_common_correct_2.mp3",
+      "type": "voice",
+      "durationMs": 2304,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "你真会想办法！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_common_demo",
+      "path": "voice/vo_common_demo.mp3",
+      "type": "voice",
+      "durationMs": 2952,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "我来做一次，你看好啦。",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_common_goodnight",
+      "path": "voice/vo_common_goodnight.mp3",
+      "type": "voice",
+      "durationMs": 4608,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "今天学得真好，小熊要睡觉啦，明天见！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_common_hint",
+      "path": "voice/vo_common_hint.mp3",
+      "type": "voice",
+      "durationMs": 3384,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "看，亮亮的地方可以试试哦。",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_common_place_here",
+      "path": "voice/vo_common_place_here.mp3",
+      "type": "voice",
+      "durationMs": 2928,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "把棋子放在路口上吧。",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_common_sticker",
+      "path": "voice/vo_common_sticker.mp3",
+      "type": "voice",
+      "durationMs": 2472,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "送你一张贴纸！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_common_try_again",
+      "path": "voice/vo_common_try_again.mp3",
+      "type": "voice",
+      "durationMs": 3264,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "差一点点，我们再试一次！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_friend_all",
+      "path": "voice/vo_friend_all.mp3",
+      "type": "voice",
+      "durationMs": 2232,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "大家都团聚啦！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_friend_cut",
+      "path": "voice/vo_friend_cut.mp3",
+      "type": "voice",
+      "durationMs": 3744,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "狐狸想剪断它们的手，快连起来！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_friend_diagonal",
+      "path": "voice/vo_friend_diagonal.mp3",
+      "type": "voice",
+      "durationMs": 3720,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "斜着够不着哦，要直直地拉手。",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_friend_intro",
+      "path": "voice/vo_friend_intro.mp3",
+      "type": "voice",
+      "durationMs": 4008,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "小企鹅走散了，帮它们手拉手吧！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    },
+    {
+      "id": "vo_friend_linked",
+      "path": "voice/vo_friend_linked.mp3",
+      "type": "voice",
+      "durationMs": 1968,
+      "placeholder": true,
+      "replaceable": true,
+      "text": "手拉手啦！",
+      "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
+    }
+  ]
+}
