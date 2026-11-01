@@ -27,7 +27,7 @@ import {
 | `captures(board, move, koPoint = null)` | 这手会提掉的子；不合法返回 `[]` |
 | `legalMoves(board, color, koPoint = null)` | 该方全部合法点，行优先 |
 | `hasLegalMove(board, color, koPoint = null)` | 是否还有合法点（劫点不算） |
-| `isTrueEye(board, point, color)` | 单点真眼。正交都是己方（边线当墙）；角上斜向必须是己方，边上至少 1 个，中腹至少 3 个 |
+| `isTrueEye(board, point, color)` | 单点真眼。正交邻居都是己方（棋盘边当墙）。斜角：角上那一个、边上两个都必须是己方；中腹四个里至少三个是己方。空点和对方的子都不算 |
 | `isGameOver({ board, toPlay, koPoint, moveNumber })` | `{ over, reason?: 'only_true_eyes' \| 'move_limit' }`。手数达到上限时优先报 `move_limit` |
 | `captureGameResult(state, captureTarget)` | 吃子棋。`state = { board, toPlay, koPoint, captures }`。提子数 ≥ 目标则 `{ over: true, winner, reason: 'target' }`；轮到的一方没有合法点则 `{ over: true, winner: 对方, reason: 'no_legal_move' }` |
 | `scoreChinese(board, { komi?, deadStones? })` | 中国规则面积计分。`deadStones` 可含多块；先整块移走再数子 |
