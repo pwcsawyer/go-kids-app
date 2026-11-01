@@ -36,6 +36,30 @@ describe('isGameOver｜只剩填真眼', () => {
     expect(isTrueEye(B(['.X...', 'X....', '.....', '.....', '.....']), P(0, 0), 'black')).toBe(false);
     expect(isTrueEye(B(['.X...', 'XO...', '.....', '.....', '.....']), P(0, 0), 'black')).toBe(false);
   });
+
+  test('边上两个斜角都是己方才是真眼', () => {
+    expect(isTrueEye(B(['.X.XO', 'XXXXO', 'OOOOO', 'O.O.O', 'OOOOO']), P(2, 0), 'black')).toBe(true);
+    expect(isTrueEye(B(['X.XO.', 'XXO..', '.....', '.....', '.....']), P(1, 0), 'black')).toBe(false);
+    expect(isTrueEye(B(['X.X..', 'XX...', '.....', '.....', '.....']), P(1, 0), 'black')).toBe(false);
+  });
+
+  test('中腹四个斜角里至少三个是己方', () => {
+    expect(isTrueEye(B(['.....', '.XXX.', '.X.X.', '.XXX.', '.....']), P(2, 2), 'black')).toBe(true);
+    expect(isTrueEye(B(['.....', '.XX..', '.X.X.', '.XXX.', '.....']), P(2, 2), 'black')).toBe(true);
+    expect(isTrueEye(B(['.....', '.OX..', '.X.X.', '..XO.', '.....']), P(2, 2), 'black')).toBe(false);
+  });
+
+  test('有子的点、对方的眼都不是己方真眼', () => {
+    const eyes = B(['.X.XO', 'XXXXO', 'OOOOO', 'O.O.O', 'OOOOO']);
+    expect(isTrueEye(eyes, P(1, 0), 'black')).toBe(false);
+    expect(isTrueEye(eyes, P(1, 3), 'black')).toBe(false);
+  });
+
+  test('边上假眼不会让 only_true_eyes 提前结束', () => {
+    const board = B(['X.XO.', 'XXO..', '.....', '.....', '.....']);
+    expect(isTrueEye(board, P(1, 0), 'black')).toBe(false);
+    expect(isGameOver({ board, toPlay: 'black', koPoint: null, moveNumber: 0 }).reason).not.toBe('only_true_eyes');
+  });
 });
 
 describe('手数上限', () => {

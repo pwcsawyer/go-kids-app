@@ -149,7 +149,8 @@ export function isTrueEye(board: Board, p: Point, color: Color): boolean {
     { x: p.x + 1, y: p.y + 1 },
   ].filter((d) => board.inBounds(d));
   const bad = diagonals.filter((d) => board.get(d) !== color).length;
-  if (diagonals.length <= 1) return bad === 0;
+  // 角上 1 个、边上 2 个斜角都必须是己方；中腹 4 个里至少 3 个。空点和对方的子都不算。
+  if (diagonals.length <= 2) return bad === 0;
   return bad <= 1;
 }
 
