@@ -11,7 +11,7 @@ import {
   type KidsBoardSize,
 } from '../components/GoBoard';
 import { colors } from '../theme';
-import { playPreviewSfx } from '../ui/sfx';
+import { playSfx } from '../ui/sfx';
 import { CAPTURE_MS, HINT_MS, motionEnabled, nativeDriver } from '../ui/timing';
 
 interface PlayScreenProps {
@@ -122,15 +122,18 @@ export function PlayScreen({
       const reason = result.reason;
       if (reason === 'occupied' || reason === 'suicide' || reason === 'ko' || reason === 'game_over') {
         showHint(point, reason);
+        playSfx('sfx_tap_invalid');
       }
       setMisses((n) => n + 1);
       return;
     }
     setMisses(0);
+    playSfx('sfx_place');
     if (result.captured && result.captured.length > 0) {
       const id = hintSeq.current + 1;
       setFlying({ id, color: opponent(played), points: result.captured });
       setFlash({ id, color: played, n: result.captured.length });
+      playSfx('sfx_capture_bird');
     }
     refresh();
   };
@@ -148,6 +151,7 @@ export function PlayScreen({
       const reason = verdict.reason;
       if (reason === 'occupied' || reason === 'suicide' || reason === 'ko' || reason === 'game_over') {
         showHint(point, reason);
+        playSfx('sfx_tap_invalid');
       }
       return;
     }
@@ -156,7 +160,7 @@ export function PlayScreen({
       return;
     }
     setPreview({ point, color: current.toPlay });
-    playPreviewSfx();
+    playSfx('sfx_preview');
   };
 
   const onUndo = () => {

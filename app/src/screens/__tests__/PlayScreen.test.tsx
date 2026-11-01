@@ -13,7 +13,7 @@ jest.mock('../../ui/timing', () => ({
   nativeDriver: false,
 }));
 
-jest.mock('../../ui/sfx', () => ({ playPreviewSfx: jest.fn() }));
+jest.mock('../../ui/sfx', () => ({ playSfx: jest.fn() }));
 
 function setWindow(width: number, height: number) {
   Dimensions.set({
@@ -93,7 +93,7 @@ describe('双人同屏对局', () => {
     expect(screen.getByTestId('captures-black-count').props.children).toBe(1);
     expect(screen.queryByLabelText('白子 0,0')).toBeNull();
     expect(screen.getByLabelText('黑子 0,1')).toBeTruthy();
-    expect((await screen.findAllByTestId('capture-bubble')).length).toBeGreaterThan(0);
+    expect((await screen.findAllByTestId('capture-bird')).length).toBeGreaterThan(0);
     expect(screen.getByTestId('capture-plus')).toBeTruthy();
   });
 

@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Pressable, StyleSheet, Text, View, type GestureResponderEvent } from 'react-native';
+import { Animated, Image, Pressable, StyleSheet, Text, View, type GestureResponderEvent } from 'react-native';
 import Svg, { Circle, G, Line } from 'react-native-svg';
 import type { Board, Color, Point } from '../engine';
 import { colors } from '../theme';
-import { CAPTURE_MS, motionEnabled, nativeDriver, PLACE_MS } from '../ui/timing';
+import { assetSource } from '../ui/assets';
+import { motionEnabled, nativeDriver, PLACE_MS } from '../ui/timing';
 import { KidStone } from './KidStone';
 
 export const KIDS_SIZES = [5, 7, 9] as const;
@@ -333,7 +334,7 @@ export function GoBoard({
       ) : null}
 
       <PlaceRipple point={showLast ? lastMove : null} grid={grid} center={center} />
-      <FlyingBubbles burst={flying ?? null} grid={grid} center={center} />
+      <FlyingBirds burst={flying ?? null} grid={grid} center={center} />
 
       {Array.from({ length: size }, (_, y) =>
         Array.from({ length: size }, (_, x) => {
@@ -467,7 +468,7 @@ function PlaceRipple({
   );
 }
 
-function FlyingBubbles({
+function FlyingBirds({
   burst,
   grid,
   center,
@@ -476,65 +477,77 @@ function FlyingBubbles({
   grid: number;
   center: (i: number) => number;
 }) {
-  const anim = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    if (!motionEnabled || !burst) return;
-    anim.setValue(0);
-    const animation = Animated.timing(anim, { toValue: 1, duration: CAPTURE_MS, useNativeDriver: nativeDriver });
-    animation.start();
-    return () => animation.stop();
-  }, [burst, anim]);
   if (!burst) return null;
-  const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [0, -grid * 1.5] });
-  const opacity = anim.interpolate({ inputRange: [0, 0.7, 1], outputRange: [1, 0.85, 0] });
-  const scale = anim.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1.35] });
-  const d = grid * 0.72;
   return (
     <>
-      {burst.points.map((p, index) => (
-        <Animated.View
+      {burst.points.map((point, index) => (
+        <CaptureBird
           key={`${burst.id}-${index}`}
-          testID="capture-bubble"
-          pointerEvents="none"
-          style={{
-            position: 'absolute',
-            left: center(p.x) - d / 2,
-            top: center(p.y) - d / 2,
-            width: d,
-            height: d,
-            borderRadius: d / 2,
-            backgroundColor: 'rgba(84,160,255,0.88)',
-            borderWidth: 3,
-            borderColor: colors.white,
-            opacity,
-            transform: [{ translateY }, { scale }],
-          }}
-        >
-          <View
-            style={{
-              position: 'absolute',
-              left: d * 0.22,
-              top: d * 0.18,
-              width: d * 0.22,
-              height: d * 0.22,
-              borderRadius: d,
-              backgroundColor: 'rgba(255,255,255,0.9)',
-            }}
-          />
-          <View
-            style={{
-              position: 'absolute',
-              left: d * 0.38,
-              top: d * 0.38,
-              width: d * 0.24,
-              height: d * 0.24,
-              borderRadius: d,
-              backgroundColor: burst.color === 'black' ? colors.black : colors.white,
-            }}
-          />
-        </Animated.View>
+          burstId={burst.id}
+          index={index}
+          point={point}
+          grid={grid}
+          center={center}
+        />
       ))}
     </>
+  );
+}
+
+/** 提子：manifest 里的小鸟两帧交替，向右上方飞出。 */
+function CaptureBird({
+  burstId,
+  index,
+  point,
+  grid,
+  center,
+}: {
+  burstId: number;
+  index: number;
+  point: Point;
+  grid: number;
+  center: (i: number) => number;
+}) {
+  const anim = useRef(new Animated.Value(0)).current;
+  const [wingUp, setWingUp] = useState(true);
+  useEffect(() => {
+    if (!motionEnabled) return;
+    const start = setTimeout(() => {
+      Animated.timing(anim, { toValue: 1, duration: 700, useNativeDriver: nativeDriver }).start();
+    }, index * 60);
+    const flap = setInterval(() => setWingUp((value) => !value), 125);
+    return () => {
+      clearTimeout(start);
+      clearInterval(flap);
+      anim.stopAnimation();
+    };
+  }, [anim, burstId, index]);
+  const d = grid * 0.84;
+  const translateX = anim.interpolate({ inputRange: [0, 1], outputRange: [0, grid * 1.8] });
+  const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [0, -grid * 2.2] });
+  const rotate = anim.interpolate({ inputRange: [0, 1], outputRange: ['-10deg', '10deg'] });
+  const scale = anim.interpolate({ inputRange: [0, 1], outputRange: [1, 0.7] });
+  const opacity = anim.interpolate({ inputRange: [0, 0.75, 1], outputRange: [1, 1, 0] });
+  return (
+    <Animated.View
+      testID="capture-bird"
+      pointerEvents="none"
+      style={{
+        position: 'absolute',
+        left: center(point.x) - d / 2,
+        top: center(point.y) - d / 2,
+        width: d,
+        height: d,
+        opacity: motionEnabled ? opacity : 1,
+        transform: motionEnabled ? [{ translateX }, { translateY }, { rotate }, { scale }] : [],
+      }}
+    >
+      <Image
+        source={assetSource(wingUp ? 'capture_bird_wing_up' : 'capture_bird_wing_down')}
+        accessibilityLabel="小鸟飞走"
+        style={{ width: d, height: d }}
+      />
+    </Animated.View>
   );
 }
 

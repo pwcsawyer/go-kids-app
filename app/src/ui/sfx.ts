@@ -1,24 +1,42 @@
-/** 预览“嘟”。素材 sfx_preview 随设计包接入前，用一段很短的合成音，调用本身同步开始。 */
-export function playPreviewSfx() {
-  const host = globalThis as {
-    AudioContext?: typeof AudioContext;
-    webkitAudioContext?: typeof AudioContext;
-  };
-  const Ctx = host.AudioContext ?? host.webkitAudioContext;
-  if (!Ctx) return;
-  try {
-    const ctx = new Ctx();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.frequency.value = 520;
-    gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.06, ctx.currentTime + 0.015);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.09);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.1);
-  } catch {
-    /* 没有音频设备时，预览棋子本身就是 100ms 内的反馈 */
+import { Image } from 'react-native';
+import { assetSource, sfxIds, type SfxId } from './assets';
+
+const cache = new Map<SfxId, HTMLAudioElement>();
+
+function uriOf(id: SfxId): string | undefined {
+  const resolved = Image.resolveAssetSource(assetSource(id));
+  return resolved?.uri;
+}
+
+/** 启动时预加载 manifest 里的音效，点击时不再临时读文件。 */
+export function preloadSfx() {
+  if (typeof Audio === 'undefined') return;
+  for (const id of sfxIds) {
+    if (cache.has(id)) continue;
+    const uri = uriOf(id);
+    if (!uri) continue;
+    const audio = new Audio(uri);
+    audio.preload = 'auto';
+    cache.set(id, audio);
   }
 }
+
+/** 播放 assets/manifest.json 中的一条音效。没有音频设备时静默跳过。 */
+export function playSfx(id: SfxId) {
+  if (typeof Audio === 'undefined') return;
+  try {
+    let audio = cache.get(id);
+    if (!audio) {
+      const uri = uriOf(id);
+      if (!uri) return;
+      audio = new Audio(uri);
+      cache.set(id, audio);
+    }
+    audio.currentTime = 0;
+    void audio.play();
+  } catch {
+    /* 静音或自动播放被拦住时，视觉反馈仍然在 */
+  }
+}
+
+preloadSfx();
