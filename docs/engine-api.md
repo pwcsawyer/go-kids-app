@@ -68,3 +68,12 @@ import {
 - 简单劫：单子提单子且提后己子只剩 1 气时，对方下一手不能立刻回提。在别处落子后解除。不检测超级劫。
 - 吃子棋不使用 `isGameOver` 的数子结束条件，只看 `captureGameResult`。
 - 数子是子数加只被一方围住的空。死子先移除，不再按提子重复加分。
+
+## 关卡内容
+
+局面、`captureTarget` 和终局规则不写在代码里，只读 `content/day01.json`–`content/day28.json`。
+
+- 练习关的棋盘是关卡里的 `board` 字符串，用 `Board.fromStrings` 还原。
+- 吃子目标优先用 game 段的 `captureTarget`，没有再看课程顶层。传给 `captureGameResult`。
+- 数子对局的 `endRules`（能否虚手、只剩真眼是否结束、`moveLimit`、贴目、计分方式）原样来自 JSON。引擎的 `MOVE_LIMITS` 与现有课程一致：5 路 40、7 路 80、9 路 120。
+- 校验：`cd app && npx tsc src/engine/index.ts --ignoreConfig --outDir /tmp/eng --module commonjs --target es2020 --skipLibCheck --esModuleInterop`，然后 `node content/tools/validate-with-engine.js /tmp/eng/index.js`。有对不上的关卡时脚本以退出码 1 结束。

@@ -15,3 +15,4 @@ for(const f of fs.readdirSync(dir).filter(f=>/^day\d+\.json$/.test(f))){
   }catch(e){bad++;console.log('err',l.id,e.message)}
  }}
 console.log('checked',n,'bad',bad)
+if (bad) process.exit(1)
