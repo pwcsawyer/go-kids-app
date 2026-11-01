@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "id": "day21",
+  "day": 21,
+  "week": 3,
+  "title": "死活入门 + 周测",
+  "knowledgePoints": [
+    15,
+    16
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 580
+  },
+  "pass": {
+    "minCorrect": 6,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day21"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 120,
+      "animation": "anim_day21",
+      "script": [
+        {
+          "voice": "v_day21_l1",
+          "text": "自己要做两个房间"
+        },
+        {
+          "voice": "v_day21_l2",
+          "text": "狐狸想做第二个房间时，小熊抢先占住"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day21-p01",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            "...X.",
+            "XXXXX",
+            "OOOOO",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day21_p01",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day21-p02",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".O...",
+            "OOOOO",
+            "XXXXX",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day21_p02",
+            "text": "狐狸想盖第二个房间！抢先占住那个地方"
+          },
+          "answer": {
+            "goal": "prevent_two_eyes",
+            "points": [
+              {
+                "x": 3,
+                "y": 0
+              }
+            ]
+          },
+          "hints": [
+            "狐狸要放砖的地方，小熊先放"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day21-p03",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "OOOOO",
+            "OXXXX",
+            "XX..X",
+            ".X.X."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day21_p03",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 3,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day21-p04",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".O..O",
+            "OOOOO",
+            "XXXXX",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day21_p04",
+            "text": "狐狸想盖第二个房间！抢先占住那个地方"
+          },
+          "answer": {
+            "goal": "prevent_two_eyes",
+            "points": [
+              {
+                "x": 2,
+                "y": 0
+              },
+              {
+                "x": 3,
+                "y": 0
+              }
+            ]
+          },
+          "hints": [
+            "狐狸要放砖的地方，小熊先放"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day21-p05",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "OOOOO",
+            "XXXXX",
+            ".X..X"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day21_p05",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 2,
+                "y": 4
+              },
+              {
+                "x": 3,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day21-p06",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "XXXXX",
+            "OOOOO",
+            ".O..O"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day21_p06",
+            "text": "狐狸想盖第二个房间！抢先占住那个地方"
+          },
+          "answer": {
+            "goal": "prevent_two_eyes",
+            "points": [
+              {
+                "x": 2,
+                "y": 4
+              },
+              {
+                "x": 3,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "狐狸要放砖的地方，小熊先放"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day21-p07",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".XXXO",
+            "XX.XO",
+            "..XOO",
+            "..XO.",
+            "..XO."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day21_p07",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 1,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day21-p08",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".OX..",
+            ".OX..",
+            ".OX..",
+            "OOX..",
+            ".OX.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day21_p08",
+            "text": "狐狸想盖第二个房间！抢先占住那个地方"
+          },
+          "answer": {
+            "goal": "prevent_two_eyes",
+            "points": [
+              {
+                "x": 0,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "狐狸要放砖的地方，小熊先放"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day21_pm",
+      "text": "家长出题：指一块棋问宝宝“能活吗？”",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "vs_ai",
+      "boardSize": 7,
+      "ai": "beginner",
+      "hintBulbs": 0,
+      "win": "first_capture",
+      "endRules": null,
+      "durationSec": 180,
+      "captureTarget": 3,
+      "noLegalMoveLoses": true
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day21",
+      "badge": "badge_week3",
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": 3
+}

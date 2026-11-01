@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "day02",
+  "day": 2,
+  "week": 1,
+  "title": "黑白轮流",
+  "knowledgePoints": [
+    2
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 255
+  },
+  "pass": {
+    "minCorrect": 1,
+    "of": 1
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day02"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day02",
+      "script": [
+        {
+          "voice": "v_day02_l1",
+          "text": "小熊拿黑棋，白兔拿白棋"
+        },
+        {
+          "voice": "v_day02_l2",
+          "text": "一次只放一颗，然后轮到对方"
+        },
+        {
+          "voice": "v_day02_l3",
+          "text": "轮到谁，谁的棋罐会跳一跳"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day02-p01",
+          "kind": "take_turns",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day02_p01",
+            "text": "和爸爸妈妈轮流放棋子，一人一颗"
+          },
+          "answer": {
+            "moves": 10,
+            "alternate": true
+          },
+          "hints": [
+            "看看哪个棋罐在跳"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "parentPlays": "white"
+        }
+      ],
+      "durationSec": 25
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day02_pm",
+      "text": "家长执白，和宝宝轮流放满 10 颗，宝宝每次说“该你啦”",
+      "durationSec": 15
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day02",
+      "badge": null,
+      "durationSec": 20
+    }
+  ]
+}

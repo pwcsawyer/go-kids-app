@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "day27",
+  "day": 27,
+  "week": 4,
+  "title": "亲子对局",
+  "knowledgePoints": [
+    18
+  ],
+  "boardSize": 9,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 530
+  },
+  "pass": {
+    "minCorrect": 0,
+    "of": 0
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day27"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day27",
+      "script": [
+        {
+          "voice": "v_day27_l1",
+          "text": "今天和爸爸妈妈下一盘 9 路棋"
+        },
+        {
+          "voice": "v_day27_l2",
+          "text": "下完由宝宝来数子"
+        }
+      ]
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day27_pm",
+      "text": "家长可以故意留一颗能吃的子，让宝宝发现",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "parent_same_device",
+      "boardSize": 9,
+      "ai": null,
+      "hintBulbs": 0,
+      "win": "score",
+      "endRules": {
+        "passEnabled": false,
+        "autoEndWhenOnlyOwnTrueEyes": true,
+        "endPopupVoice": "v_game_end_count",
+        "parentEndButton": true,
+        "moveLimit": {
+          "5": 40,
+          "7": 80,
+          "9": 120
+        },
+        "deadStones": "ai_mark_parent_confirm",
+        "scoring": "chinese_area",
+        "komi": 0
+      },
+      "durationSec": 300
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day27",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": null,
+  "device": {
+    "minBoardCellPt": 44,
+    "preferredDevice": "ipad"
+  }
+}

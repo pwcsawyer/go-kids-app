@@ -1,0 +1,468 @@
+{
+  "schemaVersion": 1,
+  "id": "day07",
+  "day": 7,
+  "week": 1,
+  "title": "周测：认子小熊",
+  "knowledgePoints": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 430
+  },
+  "pass": {
+    "minCorrect": 6,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day07"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day07",
+      "script": [
+        {
+          "voice": "v_day07_l1",
+          "text": "小测验来啦，答对 6 题就能拿到“认子小熊”徽章"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day07-p01",
+          "kind": "place_on_point",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day07_p01",
+            "text": "把小熊棋子放到发光的路口上"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 0,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "棋子住在路口，不住在格子里哦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "highlight": [
+            {
+              "x": 0,
+              "y": 1
+            }
+          ]
+        },
+        {
+          "id": "day07-p02",
+          "kind": "place_region",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day07_p02",
+            "text": "把小动物送到棋盘的角上"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 4,
+                "y": 0
+              },
+              {
+                "x": 0,
+                "y": 4
+              },
+              {
+                "x": 4,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "角落是两条边碰头的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day07-p03",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "...X."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day07_p03",
+            "text": "小熊有几个呼吸的小洞？点数字"
+          },
+          "answer": {
+            "count": 3,
+            "points": [
+              {
+                "x": 3,
+                "y": 3
+              },
+              {
+                "x": 2,
+                "y": 4
+              },
+              {
+                "x": 4,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "用手指点一点棋子旁边直直的路口"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 3,
+            "y": 4
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "day07-p04",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            "X....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day07_p04",
+            "text": "小熊有几个呼吸的小洞？点数字"
+          },
+          "answer": {
+            "count": 2,
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              },
+              {
+                "x": 0,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "用手指点一点棋子旁边直直的路口"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 0
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "day07-p05",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            "...X.",
+            "...X."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day07_p05",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 5,
+            "points": [
+              {
+                "x": 3,
+                "y": 2
+              },
+              {
+                "x": 2,
+                "y": 3
+              },
+              {
+                "x": 4,
+                "y": 3
+              },
+              {
+                "x": 2,
+                "y": 4
+              },
+              {
+                "x": 4,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 3,
+            "y": 4
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day07-p06",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            "..O..",
+            "..XX."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day07_p06",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 3,
+            "points": [
+              {
+                "x": 3,
+                "y": 3
+              },
+              {
+                "x": 1,
+                "y": 4
+              },
+              {
+                "x": 4,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 2,
+            "y": 4
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day07-p07",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            "X....",
+            "XX...",
+            "O....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day07_p07",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 3,
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              },
+              {
+                "x": 2,
+                "y": 1
+              },
+              {
+                "x": 1,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 1
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day07-p08",
+          "kind": "place_region",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day07_p08",
+            "text": "把小动物送到棋盘的中间上"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 1,
+                "y": 1
+              },
+              {
+                "x": 2,
+                "y": 1
+              },
+              {
+                "x": 3,
+                "y": 1
+              },
+              {
+                "x": 1,
+                "y": 2
+              },
+              {
+                "x": 2,
+                "y": 2
+              },
+              {
+                "x": 3,
+                "y": 2
+              },
+              {
+                "x": 1,
+                "y": 3
+              },
+              {
+                "x": 2,
+                "y": 3
+              },
+              {
+                "x": 3,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "中间离边远远的"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day07_pm",
+      "text": "和宝宝一起翻贴纸册，数这周得了几张",
+      "durationSec": 15
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day07",
+      "badge": "badge_week1",
+      "durationSec": 20
+    }
+  ]
+}

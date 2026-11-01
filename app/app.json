@@ -8,7 +8,10 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "isTabletOnly": true,
+      "requireFullScreen": true,
+      "deploymentTarget": "15.0"
     },
     "android": {
       "adaptiveIcon": {

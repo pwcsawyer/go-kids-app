@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 1,
+  "id": "day12",
+  "day": 12,
+  "week": 2,
+  "title": "找朋友 1：直直手拉手",
+  "knowledgePoints": [
+    4
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 430
+  },
+  "pass": {
+    "minCorrect": 7,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day12"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day12",
+      "script": [
+        {
+          "voice": "v_day12_l1",
+          "text": "直直挨着的小熊手拉手，是一家"
+        },
+        {
+          "voice": "v_day12_l2",
+          "text": "斜着挨着，手够不着，不是一家"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day12-p01",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "..X..",
+            "..X..",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day12_p01",
+            "text": "这两只小熊手拉手了吗？对点绿勾，不对点红叉"
+          },
+          "answer": {
+            "value": true
+          },
+          "hints": [
+            "直直挨着才能拉到手，斜着够不着"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day12-p02",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "..X..",
+            ".X...",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day12_p02",
+            "text": "这两只小熊手拉手了吗？对点绿勾，不对点红叉"
+          },
+          "answer": {
+            "value": false
+          },
+          "hints": [
+            "直直挨着才能拉到手，斜着够不着"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day12-p03",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            "..X..",
+            "..X.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day12_p03",
+            "text": "这两只小熊手拉手了吗？对点绿勾，不对点红叉"
+          },
+          "answer": {
+            "value": true
+          },
+          "hints": [
+            "直直挨着才能拉到手，斜着够不着"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day12-p04",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "...X.",
+            "...X.",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day12_p04",
+            "text": "这两只小熊手拉手了吗？对点绿勾，不对点红叉"
+          },
+          "answer": {
+            "value": true
+          },
+          "hints": [
+            "直直挨着才能拉到手，斜着够不着"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day12-p05",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".X...",
+            ".X...",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day12_p05",
+            "text": "这两只小熊手拉手了吗？对点绿勾，不对点红叉"
+          },
+          "answer": {
+            "value": true
+          },
+          "hints": [
+            "直直挨着才能拉到手，斜着够不着"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day12-p06",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".X...",
+            ".X...",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day12_p06",
+            "text": "这两只小熊手拉手了吗？对点绿勾，不对点红叉"
+          },
+          "answer": {
+            "value": true
+          },
+          "hints": [
+            "直直挨着才能拉到手，斜着够不着"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day12-p07",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".X...",
+            "X....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day12_p07",
+            "text": "这两只小熊手拉手了吗？对点绿勾，不对点红叉"
+          },
+          "answer": {
+            "value": false
+          },
+          "hints": [
+            "直直挨着才能拉到手，斜着够不着"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day12-p08",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            "....X",
+            "...X.",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day12_p08",
+            "text": "这两只小熊手拉手了吗？对点绿勾，不对点红叉"
+          },
+          "answer": {
+            "value": false
+          },
+          "hints": [
+            "直直挨着才能拉到手，斜着够不着"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day12_pm",
+      "text": "家长和宝宝伸手：直着能拉到，斜着够不着",
+      "durationSec": 15
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day12",
+      "badge": null,
+      "durationSec": 20
+    }
+  ]
+}

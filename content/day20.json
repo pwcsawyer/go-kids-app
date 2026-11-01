@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 1,
+  "id": "day20",
+  "day": 20,
+  "week": 3,
+  "title": "盖房子 3：两个房间永远安全",
+  "knowledgePoints": [
+    15
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 580
+  },
+  "pass": {
+    "minCorrect": 5,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day20"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 120,
+      "animation": "anim_day20",
+      "script": [
+        {
+          "voice": "v_day20_l1",
+          "text": "只有一个房间，狐狸能把它堵住吃掉"
+        },
+        {
+          "voice": "v_day20_l2",
+          "text": "有两个真房间，狐狸永远吃不掉，这叫“活棋”"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day20-p01",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".X...",
+            "XXXXX",
+            "OOOOO",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day20_p01",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 3,
+                "y": 0
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day20-p02",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            "X..X.",
+            "XXXXX",
+            "OOOOO",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day20_p02",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              },
+              {
+                "x": 2,
+                "y": 0
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day20-p03",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "OOOOO",
+            "XXXXX",
+            "X..X."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day20_p03",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 1,
+                "y": 4
+              },
+              {
+                "x": 2,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day20-p04",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "OOOOO",
+            "XXXXO",
+            "X..XX",
+            ".X.X."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day20_p04",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 1,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day20-p05",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".XXXO",
+            "XX.XO",
+            "..XOO",
+            "..XO.",
+            "..XO."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day20_p05",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 1,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day20-p06",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".XO..",
+            ".XO..",
+            ".XO..",
+            "XXO..",
+            ".XO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day20_p06",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 0,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day20-p07",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            "..OX.",
+            "..OXX",
+            "..OX.",
+            "..OX.",
+            "..OXX"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day20_p07",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 4,
+                "y": 2
+              },
+              {
+                "x": 4,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day20-p08",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            "..OX.",
+            "..OXX",
+            "..OX.",
+            "..OX.",
+            "..OXX"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day20_p08",
+            "text": "小熊的房子只有一个房间，再放一块砖盖出第二个房间！"
+          },
+          "answer": {
+            "goal": "two_eyes",
+            "points": [
+              {
+                "x": 4,
+                "y": 2
+              },
+              {
+                "x": 4,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "找一个能隔出新房间的地方"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day20_pm",
+      "text": "问：“一个房间够不够安全？”",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "parent_same_device",
+      "boardSize": 5,
+      "ai": null,
+      "hintBulbs": 0,
+      "win": "first_capture",
+      "endRules": null,
+      "durationSec": 180,
+      "captureTarget": 3,
+      "noLegalMoveLoses": true
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day20",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": 3
+}

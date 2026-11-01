@@ -1,0 +1,313 @@
+{
+  "schemaVersion": 1,
+  "id": "day13",
+  "day": 13,
+  "week": 2,
+  "title": "找朋友 2：连起来",
+  "knowledgePoints": [
+    4
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 380
+  },
+  "pass": {
+    "minCorrect": 4,
+    "of": 6
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day13"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day13",
+      "script": [
+        {
+          "voice": "v_day13_l1",
+          "text": "走散的小熊要连起来"
+        },
+        {
+          "voice": "v_day13_l2",
+          "text": "连起来的一家更难被吃掉"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day13-p01",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".X...",
+            "O....",
+            ".X..."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day13_p01",
+            "text": "走散的两只小熊，下一步让它们手拉手！"
+          },
+          "answer": {
+            "goal": "connect",
+            "points": [
+              {
+                "x": 1,
+                "y": 3
+              }
+            ],
+            "stones": [
+              {
+                "x": 1,
+                "y": 2
+              },
+              {
+                "x": 1,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "中间那个路口放一只小熊"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "find_friends"
+        },
+        {
+          "id": "day13-p02",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "...X.",
+            "..O.O",
+            "...X.",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day13_p02",
+            "text": "走散的两只小熊，下一步让它们手拉手！"
+          },
+          "answer": {
+            "goal": "connect",
+            "points": [
+              {
+                "x": 3,
+                "y": 2
+              }
+            ],
+            "stones": [
+              {
+                "x": 3,
+                "y": 1
+              },
+              {
+                "x": 3,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "中间那个路口放一只小熊"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "find_friends"
+        },
+        {
+          "id": "day13-p03",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "...X.",
+            "....O",
+            "...X.",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day13_p03",
+            "text": "走散的两只小熊，下一步让它们手拉手！"
+          },
+          "answer": {
+            "goal": "connect",
+            "points": [
+              {
+                "x": 3,
+                "y": 2
+              }
+            ],
+            "stones": [
+              {
+                "x": 3,
+                "y": 1
+              },
+              {
+                "x": 3,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "中间那个路口放一只小熊"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "find_friends"
+        },
+        {
+          "id": "day13-p04",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "...O.",
+            "..X.X",
+            "...O.",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day13_p04",
+            "text": "走散的两只小熊，下一步让它们手拉手！"
+          },
+          "answer": {
+            "goal": "connect",
+            "points": [
+              {
+                "x": 3,
+                "y": 2
+              }
+            ],
+            "stones": [
+              {
+                "x": 2,
+                "y": 2
+              },
+              {
+                "x": 4,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "中间那个路口放一只小熊"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "find_friends"
+        },
+        {
+          "id": "day13-p05",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "..X..",
+            ".O.O.",
+            "..X.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day13_p05",
+            "text": "走散的两只小熊，下一步让它们手拉手！"
+          },
+          "answer": {
+            "goal": "connect",
+            "points": [
+              {
+                "x": 2,
+                "y": 3
+              }
+            ],
+            "stones": [
+              {
+                "x": 2,
+                "y": 2
+              },
+              {
+                "x": 2,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "中间那个路口放一只小熊"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "find_friends"
+        },
+        {
+          "id": "day13-p06",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "...X.",
+            "..O.O",
+            "...X.",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day13_p06",
+            "text": "走散的两只小熊，下一步让它们手拉手！"
+          },
+          "answer": {
+            "goal": "connect",
+            "points": [
+              {
+                "x": 3,
+                "y": 2
+              }
+            ],
+            "stones": [
+              {
+                "x": 3,
+                "y": 1
+              },
+              {
+                "x": 3,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "中间那个路口放一只小熊"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "find_friends"
+        }
+      ],
+      "durationSec": 150
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day13_pm",
+      "text": "亲子游戏：宝宝连小熊，家长放白兔挡路",
+      "durationSec": 15
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day13",
+      "badge": null,
+      "durationSec": 20
+    }
+  ]
+}

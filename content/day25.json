@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "id": "day25",
+  "day": 25,
+  "week": 4,
+  "title": "7 路对局：先占角",
+  "knowledgePoints": [
+    19
+  ],
+  "boardSize": 7,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 600
+  },
+  "pass": {
+    "minCorrect": 2,
+    "of": 3
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day25"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day25",
+      "script": [
+        {
+          "voice": "v_day25_l1",
+          "text": "金角银边草肚皮：先住角落最省力"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day25-p01",
+          "kind": "choose_option",
+          "boardSize": 7,
+          "board": [
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            "......."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day25_p01",
+            "text": "第一步放哪里最省力？金角银边草肚皮"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 2,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "角落有两面墙帮忙，最省力"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "options": [
+            {
+              "x": 3,
+              "y": 3
+            },
+            {
+              "x": 3,
+              "y": 0
+            },
+            {
+              "x": 2,
+              "y": 2
+            }
+          ]
+        },
+        {
+          "id": "day25-p02",
+          "kind": "choose_option",
+          "boardSize": 7,
+          "board": [
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            "......."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day25_p02",
+            "text": "第一步放哪里最省力？金角银边草肚皮"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 2,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "角落有两面墙帮忙，最省力"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "options": [
+            {
+              "x": 3,
+              "y": 3
+            },
+            {
+              "x": 2,
+              "y": 2
+            },
+            {
+              "x": 3,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "day25-p03",
+          "kind": "choose_option",
+          "boardSize": 7,
+          "board": [
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            "......."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day25_p03",
+            "text": "第一步放哪里最省力？金角银边草肚皮"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 2,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "角落有两面墙帮忙，最省力"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "options": [
+            {
+              "x": 3,
+              "y": 3
+            },
+            {
+              "x": 2,
+              "y": 2
+            },
+            {
+              "x": 3,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "durationSec": 75
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day25_pm",
+      "text": "问：“第一步放哪里最省力？”",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "vs_ai",
+      "boardSize": 7,
+      "ai": "beginner",
+      "hintBulbs": 0,
+      "win": "score",
+      "endRules": {
+        "passEnabled": false,
+        "autoEndWhenOnlyOwnTrueEyes": true,
+        "endPopupVoice": "v_game_end_count",
+        "parentEndButton": true,
+        "moveLimit": {
+          "5": 40,
+          "7": 80,
+          "9": 120
+        },
+        "deadStones": "ai_mark_parent_confirm",
+        "scoring": "chinese_area",
+        "komi": 0
+      },
+      "durationSec": 295
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day25",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": null
+}

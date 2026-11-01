@@ -3,10 +3,14 @@ import { Platform } from 'react-native';
 /** Web 没有原生动画模块，用 JS 驱动。 */
 export const nativeDriver = Platform.OS !== 'web';
 
-/** 交互时长（毫秒）。预览见设计规范 §3.1，非法反馈见 §5。 */
-export const PREVIEW_MS = 300;
+/**
+ * 交互时长（毫秒）。
+ * 点按预览必须在 100ms 内出现，任何反馈不超过 200ms。
+ * 预览不自动落子，再点同一点才确认。
+ */
+export const PREVIEW_DEADLINE_MS = 100;
+export const FEEDBACK_DEADLINE_MS = 200;
 export const HINT_MS = 900;
-export const TAP_GUARD_MS = 200;
 export const CAPTURE_MS = 800;
 export const PLACE_MS = 200;
 

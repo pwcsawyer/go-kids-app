@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Pressable, StyleSheet, Text, View, type GestureResponderEvent } from 'react-native';
+import { Animated, Image, Pressable, StyleSheet, Text, View, type GestureResponderEvent } from 'react-native';
 import Svg, { Circle, G, Line } from 'react-native-svg';
 import type { Board, Color, Point } from '../engine';
 import { colors } from '../theme';
-import { CAPTURE_MS, motionEnabled, nativeDriver, PLACE_MS } from '../ui/timing';
+import { assetSource } from '../ui/assets';
+import { motionEnabled, nativeDriver, PLACE_MS } from '../ui/timing';
 import { KidStone } from './KidStone';
 
 export const KIDS_SIZES = [5, 7, 9] as const;
@@ -25,8 +26,10 @@ export interface CaptureBurst {
 
 interface GoBoardProps {
   board: Board;
-  /** 棋盘边长（px）。交叉点热区 = 边长 / 路数，调用方应尽量给到 ≥56×路数。 */
+  /** 棋盘边长（px）。可点格子不小于 minHit（默认 56）。 */
   width: number;
+  /** 交叉点热区下限（pt/px）。格子更小时放大热区并吸附到最近交叉点。 */
+  minHit?: number;
   lastMove?: Point | null;
   /** 显式气点（教学层可直接传入）。 */
   liberties?: Point[];
@@ -34,6 +37,8 @@ interface GoBoardProps {
   libertyFocus?: Point | null;
   /** 即将落下的半透明预览子。 */
   preview?: { point: Point; color: Color } | null;
+  /** 提示灯指出的交叉点。 */
+  suggestion?: Point | null;
   hint?: BoardHint | null;
   /** 递增时棋盘轻轻左右摇，表示这步放不下。 */
   shakeSignal?: number;
@@ -80,6 +85,24 @@ export function isWithinSnap(locationX: number | undefined, locationY: number | 
   return Math.abs(locationX - half) <= half + 0.01 && Math.abs(locationY - half) <= half + 0.01;
 }
 
+/** 把棋盘坐标吸到最近交叉点。热区半径至少是 minHit 的一半。 */
+export function nearestPoint(
+  locationX: number,
+  locationY: number,
+  size: number,
+  grid: number,
+  minHit: number,
+): Point | null {
+  if (!Number.isFinite(locationX) || !Number.isFinite(locationY)) return null;
+  const x = Math.min(size - 1, Math.max(0, Math.round(locationX / grid - 0.5)));
+  const y = Math.min(size - 1, Math.max(0, Math.round(locationY / grid - 0.5)));
+  const cx = (x + 0.5) * grid;
+  const cy = (y + 0.5) * grid;
+  const reach = Math.max(grid, minHit) / 2;
+  if (Math.max(Math.abs(locationX - cx), Math.abs(locationY - cy)) <= reach + 0.01) return { x, y };
+  return null;
+}
+
 function flower(cx: number, cy: number, r: number) {
   const petals = [0, 72, 144, 216, 288].map((deg) => {
     const a = ((deg - 90) * Math.PI) / 180;
@@ -91,10 +114,12 @@ function flower(cx: number, cy: number, r: number) {
 export function GoBoard({
   board,
   width,
+  minHit = 56,
   lastMove = null,
   liberties,
   libertyFocus = null,
   preview = null,
+  suggestion = null,
   hint = null,
   shakeSignal = 0,
   flying = null,
@@ -102,6 +127,7 @@ export function GoBoard({
 }: GoBoardProps) {
   const size = board.size;
   const grid = width / size;
+  const hit = Math.max(grid, minHit);
   const center = (i: number) => (i + 0.5) * grid;
   const stoneR = grid * 0.46;
   const [pressed, setPressed] = useState<Point | null>(null);
@@ -127,8 +153,15 @@ export function GoBoard({
 
   const onPointPress = (point: Point, event: GestureResponderEvent) => {
     const { locationX, locationY } = event.nativeEvent;
-    if (!isWithinSnap(locationX, locationY, grid)) return;
+    if (!isWithinSnap(locationX, locationY, hit)) return;
     onPressPoint(point);
+  };
+
+  const onBoardPress = (event: GestureResponderEvent) => {
+    const { locationX, locationY } = event.nativeEvent;
+    if (typeof locationX !== 'number' || typeof locationY !== 'number') return;
+    const point = nearestPoint(locationX, locationY, size, grid, minHit);
+    if (point) onPressPoint(point);
   };
 
   const hoshi = HOSHI[size] ?? [];
@@ -190,6 +223,16 @@ export function GoBoard({
             opacity={0.55}
           />
         ) : null}
+        {suggestion ? (
+          <Circle
+            cx={center(suggestion.x)}
+            cy={center(suggestion.y)}
+            r={stoneR * 1.05}
+            fill="none"
+            stroke={colors.star}
+            strokeWidth={4}
+          />
+        ) : null}
         {showLast ? (
           <Circle
             cx={center(lastMove.x)}
@@ -245,6 +288,36 @@ export function GoBoard({
         />
       ))}
 
+      {preview ? (
+        <View
+          testID={`preview-${preview.point.x}-${preview.point.y}`}
+          accessibilityLabel={`预览 ${preview.color === 'black' ? '黑子' : '白子'} ${preview.point.x},${preview.point.y}`}
+          pointerEvents="none"
+          style={{
+            position: 'absolute',
+            left: center(preview.point.x) - 4,
+            top: center(preview.point.y) - 4,
+            width: 8,
+            height: 8,
+          }}
+        />
+      ) : null}
+
+      {suggestion ? (
+        <View
+          testID={`suggestion-${suggestion.x}-${suggestion.y}`}
+          accessibilityLabel="看看这里"
+          pointerEvents="none"
+          style={{
+            position: 'absolute',
+            left: center(suggestion.x) - 4,
+            top: center(suggestion.y) - 4,
+            width: 8,
+            height: 8,
+          }}
+        />
+      ) : null}
+
       {showLast ? (
         <View
           testID="last-move"
@@ -261,7 +334,7 @@ export function GoBoard({
       ) : null}
 
       <PlaceRipple point={showLast ? lastMove : null} grid={grid} center={center} />
-      <FlyingBubbles burst={flying ?? null} grid={grid} center={center} />
+      <FlyingBirds burst={flying ?? null} grid={grid} center={center} />
 
       {Array.from({ length: size }, (_, y) =>
         Array.from({ length: size }, (_, x) => {
@@ -278,15 +351,22 @@ export function GoBoard({
               onPress={(event) => onPointPress({ x, y }, event)}
               style={{
                 position: 'absolute',
-                left: x * grid,
-                top: y * grid,
-                width: grid,
-                height: grid,
+                left: x * grid + (grid - hit) / 2,
+                top: y * grid + (grid - hit) / 2,
+                width: hit,
+                height: hit,
               }}
             />
           );
         }),
       )}
+
+      <Pressable
+        testID="board-touch"
+        accessible={false}
+        onPress={onBoardPress}
+        style={StyleSheet.absoluteFill}
+      />
 
       {hint ? <HintBubble hint={hint} grid={grid} center={center} /> : null}
     </Animated.View>
@@ -388,7 +468,7 @@ function PlaceRipple({
   );
 }
 
-function FlyingBubbles({
+function FlyingBirds({
   burst,
   grid,
   center,
@@ -397,65 +477,77 @@ function FlyingBubbles({
   grid: number;
   center: (i: number) => number;
 }) {
-  const anim = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    if (!motionEnabled || !burst) return;
-    anim.setValue(0);
-    const animation = Animated.timing(anim, { toValue: 1, duration: CAPTURE_MS, useNativeDriver: nativeDriver });
-    animation.start();
-    return () => animation.stop();
-  }, [burst, anim]);
   if (!burst) return null;
-  const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [0, -grid * 1.5] });
-  const opacity = anim.interpolate({ inputRange: [0, 0.7, 1], outputRange: [1, 0.85, 0] });
-  const scale = anim.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1.35] });
-  const d = grid * 0.72;
   return (
     <>
-      {burst.points.map((p, index) => (
-        <Animated.View
+      {burst.points.map((point, index) => (
+        <CaptureBird
           key={`${burst.id}-${index}`}
-          testID="capture-bubble"
-          pointerEvents="none"
-          style={{
-            position: 'absolute',
-            left: center(p.x) - d / 2,
-            top: center(p.y) - d / 2,
-            width: d,
-            height: d,
-            borderRadius: d / 2,
-            backgroundColor: 'rgba(84,160,255,0.88)',
-            borderWidth: 3,
-            borderColor: colors.white,
-            opacity,
-            transform: [{ translateY }, { scale }],
-          }}
-        >
-          <View
-            style={{
-              position: 'absolute',
-              left: d * 0.22,
-              top: d * 0.18,
-              width: d * 0.22,
-              height: d * 0.22,
-              borderRadius: d,
-              backgroundColor: 'rgba(255,255,255,0.9)',
-            }}
-          />
-          <View
-            style={{
-              position: 'absolute',
-              left: d * 0.38,
-              top: d * 0.38,
-              width: d * 0.24,
-              height: d * 0.24,
-              borderRadius: d,
-              backgroundColor: burst.color === 'black' ? colors.black : colors.white,
-            }}
-          />
-        </Animated.View>
+          burstId={burst.id}
+          index={index}
+          point={point}
+          grid={grid}
+          center={center}
+        />
       ))}
     </>
+  );
+}
+
+/** 提子：manifest 里的小鸟两帧交替，向右上方飞出。 */
+function CaptureBird({
+  burstId,
+  index,
+  point,
+  grid,
+  center,
+}: {
+  burstId: number;
+  index: number;
+  point: Point;
+  grid: number;
+  center: (i: number) => number;
+}) {
+  const anim = useRef(new Animated.Value(0)).current;
+  const [wingUp, setWingUp] = useState(true);
+  useEffect(() => {
+    if (!motionEnabled) return;
+    const start = setTimeout(() => {
+      Animated.timing(anim, { toValue: 1, duration: 700, useNativeDriver: nativeDriver }).start();
+    }, index * 60);
+    const flap = setInterval(() => setWingUp((value) => !value), 125);
+    return () => {
+      clearTimeout(start);
+      clearInterval(flap);
+      anim.stopAnimation();
+    };
+  }, [anim, burstId, index]);
+  const d = grid * 0.84;
+  const translateX = anim.interpolate({ inputRange: [0, 1], outputRange: [0, grid * 1.8] });
+  const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [0, -grid * 2.2] });
+  const rotate = anim.interpolate({ inputRange: [0, 1], outputRange: ['-10deg', '10deg'] });
+  const scale = anim.interpolate({ inputRange: [0, 1], outputRange: [1, 0.7] });
+  const opacity = anim.interpolate({ inputRange: [0, 0.75, 1], outputRange: [1, 1, 0] });
+  return (
+    <Animated.View
+      testID="capture-bird"
+      pointerEvents="none"
+      style={{
+        position: 'absolute',
+        left: center(point.x) - d / 2,
+        top: center(point.y) - d / 2,
+        width: d,
+        height: d,
+        opacity: motionEnabled ? opacity : 1,
+        transform: motionEnabled ? [{ translateX }, { translateY }, { rotate }, { scale }] : [],
+      }}
+    >
+      <Image
+        source={assetSource(wingUp ? 'capture_bird_wing_up' : 'capture_bird_wing_down')}
+        accessibilityLabel="小鸟飞走"
+        style={{ width: d, height: d }}
+      />
+    </Animated.View>
   );
 }
 

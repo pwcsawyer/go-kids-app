@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "id": "day24",
+  "day": 24,
+  "week": 4,
+  "title": "5 路对局",
+  "knowledgePoints": [
+    18
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 495
+  },
+  "pass": {
+    "minCorrect": 1,
+    "of": 1
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day24"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day24",
+      "script": [
+        {
+          "voice": "v_day24_l1",
+          "text": "今天和白兔下一整盘！"
+        },
+        {
+          "voice": "v_day24_l2",
+          "text": "下完啦，就一起数一数"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day24-p01",
+          "kind": "score_compare",
+          "boardSize": 5,
+          "board": [
+            ".XO..",
+            ".XO..",
+            ".XO..",
+            ".XO..",
+            ".XO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day24_p01",
+            "text": "数一数：小熊的棋子和花园加起来，和白兔比，谁多？"
+          },
+          "answer": {
+            "winner": "white",
+            "score": {
+              "blackStones": 5,
+              "whiteStones": 5,
+              "blackTerritory": 5,
+              "whiteTerritory": 10,
+              "black": 10,
+              "white": 15
+            }
+          },
+          "hints": [
+            "先数棋子，再数花园，加起来"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "countMode": "stones_plus_territory"
+        }
+      ],
+      "durationSec": 25
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day24_pm",
+      "text": "只在宝宝求助时给提示",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "vs_ai",
+      "boardSize": 5,
+      "ai": "beginner",
+      "hintBulbs": 0,
+      "win": "score",
+      "endRules": {
+        "passEnabled": false,
+        "autoEndWhenOnlyOwnTrueEyes": true,
+        "endPopupVoice": "v_game_end_count",
+        "parentEndButton": true,
+        "moveLimit": {
+          "5": 40,
+          "7": 80,
+          "9": 120
+        },
+        "deadStones": "ai_mark_parent_confirm",
+        "scoring": "chinese_area",
+        "komi": 0
+      },
+      "durationSec": 240
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day24",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": null
+}

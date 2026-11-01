@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "id": "day11",
+  "day": 11,
+  "week": 2,
+  "title": "逃跑：帮小熊回家",
+  "knowledgePoints": [
+    10
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 380
+  },
+  "pass": {
+    "minCorrect": 4,
+    "of": 6
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day11"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day11",
+      "script": [
+        {
+          "voice": "v_day11_l1",
+          "text": "小熊被打吃了别着急"
+        },
+        {
+          "voice": "v_day11_l2",
+          "text": "往空地方跑，多找几个小洞，就安全了"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day11-p01",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "...O.",
+            "..OX.",
+            "...O.",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day11_p01",
+            "text": "小熊被围住只剩一个洞了，帮它逃跑！"
+          },
+          "answer": {
+            "goal": "escape",
+            "points": [
+              {
+                "x": 4,
+                "y": 2
+              }
+            ],
+            "target": {
+              "x": 3,
+              "y": 2
+            }
+          },
+          "hints": [
+            "往空空的地方跑，多找几个小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day11-p02",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            "...O.",
+            "..OXO",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day11_p02",
+            "text": "小熊被围住只剩一个洞了，帮它逃跑！"
+          },
+          "answer": {
+            "goal": "escape",
+            "points": [
+              {
+                "x": 3,
+                "y": 2
+              }
+            ],
+            "target": {
+              "x": 3,
+              "y": 1
+            }
+          },
+          "hints": [
+            "往空空的地方跑，多找几个小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day11-p03",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".O...",
+            ".XO..",
+            ".O...",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day11_p03",
+            "text": "小熊被围住只剩一个洞了，帮它逃跑！"
+          },
+          "answer": {
+            "goal": "escape",
+            "points": [
+              {
+                "x": 0,
+                "y": 1
+              }
+            ],
+            "target": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "hints": [
+            "往空空的地方跑，多找几个小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day11-p04",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            "....O",
+            "....X"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day11_p04",
+            "text": "小熊被围住只剩一个洞了，帮它逃跑！"
+          },
+          "answer": {
+            "goal": "escape",
+            "points": [
+              {
+                "x": 3,
+                "y": 4
+              }
+            ],
+            "target": {
+              "x": 4,
+              "y": 4
+            }
+          },
+          "hints": [
+            "往空空的地方跑，多找几个小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day11-p05",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            "...OX",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day11_p05",
+            "text": "小熊被围住只剩一个洞了，帮它逃跑！"
+          },
+          "answer": {
+            "goal": "escape",
+            "points": [
+              {
+                "x": 4,
+                "y": 1
+              }
+            ],
+            "target": {
+              "x": 4,
+              "y": 0
+            }
+          },
+          "hints": [
+            "往空空的地方跑，多找几个小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day11-p06",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".OXO.",
+            "..O..",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day11_p06",
+            "text": "小熊被围住只剩一个洞了，帮它逃跑！"
+          },
+          "answer": {
+            "goal": "escape",
+            "points": [
+              {
+                "x": 2,
+                "y": 1
+              }
+            ],
+            "target": {
+              "x": 2,
+              "y": 2
+            }
+          },
+          "hints": [
+            "往空空的地方跑，多找几个小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        }
+      ],
+      "durationSec": 150
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day11_pm",
+      "text": "问：“怎么让小熊多一个洞呼吸？”",
+      "durationSec": 15
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day11",
+      "badge": null,
+      "durationSec": 20
+    }
+  ]
+}
