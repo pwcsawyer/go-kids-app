@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
-  "platform": "iPad landscape",
-  "basedOn": "PRD v1.0",
+  "platform": "iPad first (landscape)",
+  "basedOn": "PRD v1.0 §5.4 已定决策 + F02",
   "note": "sfx/voice 全部为占位素材，可按同名替换",
   "assets": [
     {
@@ -106,7 +106,7 @@
       "durationMs": 80,
       "placeholder": true,
       "replaceable": true,
-      "desc": "预览/按压",
+      "desc": "预览“嘟”声（第一次点出现预览子时）",
       "source": "程序合成(numpy+ffmpeg)，峰值约 -12~-18 dBFS"
     },
     {
@@ -179,7 +179,7 @@
       "path": "stones/stone_black_preview.svg",
       "type": "stones",
       "viewBox": "0 0 100 100",
-      "note": "直径=格距×0.92 渲染"
+      "note": "半透明预览子：第一次点 100ms 内显示，再点同一点落子"
     },
     {
       "id": "stone_white_blink",
@@ -221,7 +221,7 @@
       "path": "stones/stone_white_preview.svg",
       "type": "stones",
       "viewBox": "0 0 100 100",
-      "note": "直径=格距×0.92 渲染"
+      "note": "半透明预览子：第一次点 100ms 内显示，再点同一点落子"
     },
     {
       "id": "vo_cat_captured",
@@ -413,5 +413,13 @@
       "text": "手拉手啦！",
       "source": "TTS 占位 edge-tts zh-CN-XiaoyiNeural"
     }
-  ]
+  ],
+  "interaction": {
+    "placement": "tap-preview-then-tap-same-point-to-confirm; no auto-place",
+    "previewFeedbackMs": 100,
+    "feedbackMaxMs": 200,
+    "dragFromBowl": "guide levels only (P1)",
+    "minTapCellPt": 56,
+    "snap": "nearest intersection"
+  }
 }
