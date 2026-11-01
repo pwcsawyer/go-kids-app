@@ -1,26 +1,14 @@
 import type { EndRules, GameSegment, Lesson, LessonLevel } from './types';
 
-type LessonContext = {
-  keys(): string[];
-  (id: string): Lesson;
-};
-
-function readContext(): LessonContext {
-  const req = require as { context?: (dir: string, deep: boolean, filter: RegExp) => LessonContext };
-  if (typeof req.context !== 'function') {
-    throw new Error('读取 content/ 需要 Metro 的 require.context');
-  }
-  return req.context('../../../content', false, /^\.\/day\d{2}\.json$/);
-}
-
 /** 关卡只来自 content/day01.json–day28.json，不在代码里写局面。 */
 export function loadLessons(): Lesson[] {
-  const ctx = readContext();
+  // 必须写成 require.context(...)，Metro 才会在打包时收进这些 JSON。
+  const ctx = require.context('../../../content', false, /^\.\/day\d{2}\.json$/);
   return ctx
     .keys()
     .slice()
     .sort()
-    .map((key) => ctx(key));
+    .map((key: string) => ctx(key) as Lesson);
 }
 
 export function practiceLevels(lesson: Lesson): LessonLevel[] {
