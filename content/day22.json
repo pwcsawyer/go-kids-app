@@ -1,0 +1,446 @@
+{
+  "schemaVersion": 1,
+  "id": "day22",
+  "day": 22,
+  "week": 4,
+  "title": "小花园：地盘",
+  "knowledgePoints": [
+    17
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 530
+  },
+  "pass": {
+    "minCorrect": 4,
+    "of": 6
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day22"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 120,
+      "animation": "anim_day22",
+      "script": [
+        {
+          "voice": "v_day22_l1",
+          "text": "小熊围起来的空地，是小熊的花园"
+        },
+        {
+          "voice": "v_day22_l2",
+          "text": "只被小熊围住才算，白兔也碰到就不算"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day22-p01",
+          "kind": "count_number",
+          "boardSize": 5,
+          "board": [
+            ".XO..",
+            "..XO.",
+            ".XO..",
+            "..XO.",
+            "..XO."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day22_p01",
+            "text": "小熊的花园有几块空地？点一块涂一块，再选数字"
+          },
+          "answer": {
+            "count": 8,
+            "score": {
+              "blackStones": 5,
+              "whiteStones": 5,
+              "blackTerritory": 8,
+              "whiteTerritory": 7,
+              "black": 13,
+              "white": 12
+            }
+          },
+          "hints": [
+            "只被小熊围住的空地才是小熊的花园"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "paintTerritory": "black",
+          "choices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ]
+        },
+        {
+          "id": "day22-p02",
+          "kind": "count_number",
+          "boardSize": 5,
+          "board": [
+            ".XO..",
+            ".XO..",
+            "..XO.",
+            ".XO..",
+            ".XO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day22_p02",
+            "text": "小熊的花园有几块空地？点一块涂一块，再选数字"
+          },
+          "answer": {
+            "count": 6,
+            "score": {
+              "blackStones": 5,
+              "whiteStones": 5,
+              "blackTerritory": 6,
+              "whiteTerritory": 9,
+              "black": 11,
+              "white": 14
+            }
+          },
+          "hints": [
+            "只被小熊围住的空地才是小熊的花园"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "paintTerritory": "black",
+          "choices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ]
+        },
+        {
+          "id": "day22-p03",
+          "kind": "count_number",
+          "boardSize": 5,
+          "board": [
+            "..XO.",
+            "..XO.",
+            "..XO.",
+            "..XO.",
+            "..XO."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day22_p03",
+            "text": "小熊的花园有几块空地？点一块涂一块，再选数字"
+          },
+          "answer": {
+            "count": 10,
+            "score": {
+              "blackStones": 5,
+              "whiteStones": 5,
+              "blackTerritory": 10,
+              "whiteTerritory": 5,
+              "black": 15,
+              "white": 10
+            }
+          },
+          "hints": [
+            "只被小熊围住的空地才是小熊的花园"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "paintTerritory": "black",
+          "choices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ]
+        },
+        {
+          "id": "day22-p04",
+          "kind": "count_number",
+          "boardSize": 5,
+          "board": [
+            ".XO..",
+            ".XO..",
+            ".XO..",
+            ".XO..",
+            ".XO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day22_p04",
+            "text": "小熊的花园有几块空地？点一块涂一块，再选数字"
+          },
+          "answer": {
+            "count": 5,
+            "score": {
+              "blackStones": 5,
+              "whiteStones": 5,
+              "blackTerritory": 5,
+              "whiteTerritory": 10,
+              "black": 10,
+              "white": 15
+            }
+          },
+          "hints": [
+            "只被小熊围住的空地才是小熊的花园"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "paintTerritory": "black",
+          "choices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ]
+        },
+        {
+          "id": "day22-p05",
+          "kind": "count_number",
+          "boardSize": 5,
+          "board": [
+            "..XO.",
+            "..XO.",
+            "..XO.",
+            ".XO..",
+            ".XO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day22_p05",
+            "text": "小熊的花园有几块空地？点一块涂一块，再选数字"
+          },
+          "answer": {
+            "count": 8,
+            "score": {
+              "blackStones": 5,
+              "whiteStones": 5,
+              "blackTerritory": 8,
+              "whiteTerritory": 7,
+              "black": 13,
+              "white": 12
+            }
+          },
+          "hints": [
+            "只被小熊围住的空地才是小熊的花园"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "paintTerritory": "black",
+          "choices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ]
+        },
+        {
+          "id": "day22-p06",
+          "kind": "count_number",
+          "boardSize": 5,
+          "board": [
+            "..XO.",
+            "..XO.",
+            "..XO.",
+            "..XO.",
+            "..XO."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day22_p06",
+            "text": "小熊的花园有几块空地？点一块涂一块，再选数字"
+          },
+          "answer": {
+            "count": 10,
+            "score": {
+              "blackStones": 5,
+              "whiteStones": 5,
+              "blackTerritory": 10,
+              "whiteTerritory": 5,
+              "black": 15,
+              "white": 10
+            }
+          },
+          "hints": [
+            "只被小熊围住的空地才是小熊的花园"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "paintTerritory": "black",
+          "choices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ]
+        }
+      ],
+      "durationSec": 150
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day22_pm",
+      "text": "问：“我们的花园有几块地？”",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "parent_same_device",
+      "boardSize": 7,
+      "ai": null,
+      "hintBulbs": 0,
+      "win": "first_capture",
+      "endRules": null,
+      "durationSec": 180,
+      "captureTarget": 3,
+      "noLegalMoveLoses": true
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day22",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": 3
+}

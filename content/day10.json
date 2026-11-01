@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 1,
+  "id": "day10",
+  "day": 10,
+  "week": 2,
+  "title": "救猫咪 9–16 关：吃一家",
+  "knowledgePoints": [
+    6
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 430
+  },
+  "pass": {
+    "minCorrect": 6,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day10"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day10",
+      "script": [
+        {
+          "voice": "v_day10_l1",
+          "text": "狐狸一家手拉手，要把一家的洞都堵住"
+        },
+        {
+          "voice": "v_day10_l2",
+          "text": "边上角上的狐狸洞更少，更好抓"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day10-p01",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "....X",
+            "...XO",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day10_p01",
+            "text": "堵住狐狸最后一个小洞，救出小猫！"
+          },
+          "answer": {
+            "goal": "capture",
+            "points": [
+              {
+                "x": 4,
+                "y": 4
+              }
+            ],
+            "minCaptured": 1
+          },
+          "hints": [
+            "狐狸只剩一个洞，就在这附近"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "save_cat"
+        },
+        {
+          "id": "day10-p02",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            "..X..",
+            ".XO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day10_p02",
+            "text": "堵住狐狸最后一个小洞，救出小猫！"
+          },
+          "answer": {
+            "goal": "capture",
+            "points": [
+              {
+                "x": 3,
+                "y": 4
+              }
+            ],
+            "minCaptured": 1
+          },
+          "hints": [
+            "狐狸只剩一个洞，就在这附近"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "save_cat"
+        },
+        {
+          "id": "day10-p03",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            "..X..",
+            "XOOX.",
+            ".XX..",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day10_p03",
+            "text": "堵住狐狸最后一个小洞，救出小猫！"
+          },
+          "answer": {
+            "goal": "capture",
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              }
+            ],
+            "minCaptured": 2
+          },
+          "hints": [
+            "狐狸只剩一个洞，就在这附近"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "save_cat"
+        },
+        {
+          "id": "day10-p04",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".XX..",
+            "XOO..",
+            ".XX..",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day10_p04",
+            "text": "堵住狐狸最后一个小洞，救出小猫！"
+          },
+          "answer": {
+            "goal": "capture",
+            "points": [
+              {
+                "x": 3,
+                "y": 1
+              }
+            ],
+            "minCaptured": 2
+          },
+          "hints": [
+            "狐狸只剩一个洞，就在这附近"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "save_cat"
+        },
+        {
+          "id": "day10-p05",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".XX..",
+            "XOOX.",
+            "..X..",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day10_p05",
+            "text": "堵住狐狸最后一个小洞，救出小猫！"
+          },
+          "answer": {
+            "goal": "capture",
+            "points": [
+              {
+                "x": 1,
+                "y": 2
+              }
+            ],
+            "minCaptured": 2
+          },
+          "hints": [
+            "狐狸只剩一个洞，就在这附近"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "save_cat"
+        },
+        {
+          "id": "day10-p06",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "...X.",
+            "..XOX",
+            "..XOX",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day10_p06",
+            "text": "堵住狐狸最后一个小洞，救出小猫！"
+          },
+          "answer": {
+            "goal": "capture",
+            "points": [
+              {
+                "x": 3,
+                "y": 4
+              }
+            ],
+            "minCaptured": 2
+          },
+          "hints": [
+            "狐狸只剩一个洞，就在这附近"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "save_cat"
+        },
+        {
+          "id": "day10-p07",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            "XX...",
+            "OOOX."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day10_p07",
+            "text": "堵住狐狸最后一个小洞，救出小猫！"
+          },
+          "answer": {
+            "goal": "capture",
+            "points": [
+              {
+                "x": 2,
+                "y": 3
+              }
+            ],
+            "minCaptured": 3
+          },
+          "hints": [
+            "狐狸只剩一个洞，就在这附近"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "save_cat"
+        },
+        {
+          "id": "day10-p08",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            "...X.",
+            "..XOX",
+            "..XOX",
+            "...OX",
+            "...X."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day10_p08",
+            "text": "堵住狐狸最后一个小洞，救出小猫！"
+          },
+          "answer": {
+            "goal": "capture",
+            "points": [
+              {
+                "x": 2,
+                "y": 3
+              }
+            ],
+            "minCaptured": 3
+          },
+          "hints": [
+            "狐狸只剩一个洞，就在这附近"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "save_cat"
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day10_pm",
+      "text": "提醒宝宝：先数洞，再下子",
+      "durationSec": 15
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day10",
+      "badge": null,
+      "durationSec": 20
+    }
+  ]
+}

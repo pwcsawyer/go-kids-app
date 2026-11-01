@@ -1,4 +1,4 @@
-import { Board, Game, scoreBoard, SUPPORTED_SIZES } from '..';
+import { Board, Game, scoreChinese, SUPPORTED_SIZES } from '..';
 const P = (x: number, y: number) => ({ x, y });
 const fromRows = (rows: string[], toPlay: 'black' | 'white' = 'black', komi = 0) =>
   new Game(rows.length as any, { board: Board.fromStrings(rows), toPlay, komi });
@@ -84,15 +84,10 @@ describe('劫', () => {
     expect(g.isLegalMove(P(2, 1)).legal).toBe(true);
     expect(g.play(P(2, 1)).captured).toEqual([P(1, 1)]);
   });
-  test('虚手解除劫', () => { const g = ko(); g.play(P(1, 1)); g.pass(); expect(g.koPoint).toBeNull(); });
+  test('在别处落子解除劫', () => { const g = ko(); g.play(P(1, 1)); g.play(P(4, 4)); expect(g.koPoint).toBeNull(); });
 });
 
-describe('虚手、悔棋、终局', () => {
-  test('两次虚手结束', () => {
-    const g = new Game(5); g.pass(); expect(g.isOver).toBe(false); g.pass(); expect(g.isOver).toBe(true);
-    expect(g.isLegalMove(P(0, 0)).reason).toBe('game_over'); expect(g.pass()).toBe(false);
-  });
-  test('落子重置虚手计数', () => { const g = new Game(5); g.pass(); g.play(P(0, 0)); g.pass(); expect(g.isOver).toBe(false); });
+describe('悔棋与手数', () => {
   test('悔棋恢复提子与计数', () => {
     const g = fromRows(['OX...', '.....', '.....', '.....', '.....']);
     g.play(P(0, 1)); expect(g.undo()).toBe(true);
@@ -103,9 +98,24 @@ describe('虚手、悔棋、终局', () => {
     const g = fromRows(['.XO..', 'X.XO.', '.XO..', '.....', '.....'], 'white');
     g.play(P(1, 1)); g.play(P(4, 4)); g.undo(); expect(g.koPoint).toEqual(P(2, 1));
   });
-  test('悔棋取消终局', () => { const g = new Game(5); g.pass(); g.pass(); g.undo(); expect(g.isOver).toBe(false); });
-  test('空历史悔棋返回 false', () => expect(new Game(5).undo()).toBe(false));
-  test('历史记录', () => { const g = new Game(5); g.play(P(1, 1)); g.pass(); expect(g.moves.map(m => m.type)).toEqual(['play', 'pass']); });
+  test('空历史悔棋手数保持 0', () => { const g = new Game(5); expect(g.undo()).toBe(false); expect(g.moveNumber).toBe(0); });
+  test('历史只记落子，一手只加 1', () => {
+    const g = new Game(5); g.play(P(1, 1)); g.play(P(2, 2));
+    expect(g.moves.map(m => m.type)).toEqual(['play', 'play']);
+    expect(g.moveNumber).toBe(2);
+    g.undo();
+    expect(g.moveNumber).toBe(1);
+  });
+  test('非法着不计手数', () => {
+    const g = new Game(5); g.play(P(0, 0));
+    expect(g.play(P(0, 0)).reason).toBe('occupied');
+    expect(g.moveNumber).toBe(1);
+  });
+  test('提子不额外计手数', () => {
+    const g = fromRows(['OX...', '.....', '.....', '.....', '.....']);
+    expect(g.play(P(0, 1)).captured).toHaveLength(1);
+    expect(g.moveNumber).toBe(1);
+  });
 });
 
 describe('儿童关卡辅助', () => {
@@ -135,13 +145,13 @@ describe('计分（中国规则）', () => {
   test('单子占全盘', () => { const g = new Game(5); g.play(P(2, 2)); expect(g.score().black).toBe(25); });
   test('分界线 + 贴目', () => {
     const b = Board.fromStrings(['.XO..', '.XO..', '.XO..', '.XO..', '.XO..']);
-    const s = scoreBoard(b, 0);
+    const s = scoreChinese(b, { komi: 0 });
     expect(s.black).toBe(10); expect(s.white).toBe(15); expect(s.winner).toBe('white');
-    const s2 = scoreBoard(Board.fromStrings(['..XO.', '..XO.', '..XO.', '..XO.', '..XO.']), 2.5);
+    const s2 = scoreChinese(Board.fromStrings(['..XO.', '..XO.', '..XO.', '..XO.', '..XO.']), { komi: 2.5 });
     expect(s2.black).toBe(15); expect(s2.white).toBe(12.5); expect(s2.winner).toBe('black'); expect(s2.margin).toBe(2.5);
   });
   test('双方相邻的空不计', () => {
-    const s = scoreBoard(Board.fromStrings(['X.O..', 'X.O..', 'X.O..', 'X.O..', 'X.O..']));
+    const s = scoreChinese(Board.fromStrings(['X.O..', 'X.O..', 'X.O..', 'X.O..', 'X.O..']));
     expect(s.blackTerritory).toBe(0); expect(s.whiteTerritory).toBe(10);
   });
 });

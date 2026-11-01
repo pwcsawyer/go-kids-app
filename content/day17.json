@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "id": "day17",
+  "day": 17,
+  "week": 3,
+  "title": "认识“劫”（只认识）",
+  "knowledgePoints": [
+    8
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 455
+  },
+  "pass": {
+    "minCorrect": 0,
+    "of": 3
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day17"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 120,
+      "animation": "anim_day17",
+      "script": [
+        {
+          "voice": "v_day17_l1",
+          "text": "刚刚被吃掉一颗，不能马上吃回来"
+        },
+        {
+          "voice": "v_day17_l2",
+          "text": "要先去别的地方走一步，才能再吃"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day17-p01",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".XO..",
+            "X.XO.",
+            ".XO..",
+            ".....",
+            "....."
+          ],
+          "toPlay": "white",
+          "prompt": {
+            "voice": "v_day17_p01",
+            "text": "小熊刚吃掉一只狐狸。白兔可以马上在这里吃回来吗？"
+          },
+          "answer": {
+            "value": false,
+            "reason": "ko"
+          },
+          "hints": [
+            "刚被吃，不能马上吃回来，要先去别处走一步"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 1,
+            "y": 1
+          },
+          "highlight": [
+            {
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "justCaptured": {
+            "x": 1,
+            "y": 1
+          },
+          "demoFirst": {
+            "move": {
+              "x": 2,
+              "y": 1
+            },
+            "color": "black"
+          }
+        },
+        {
+          "id": "day17-p02",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "..OX.",
+            ".OX.X",
+            "..OX."
+          ],
+          "toPlay": "white",
+          "prompt": {
+            "voice": "v_day17_p02",
+            "text": "小熊刚吃掉一只狐狸。白兔可以马上在这里吃回来吗？"
+          },
+          "answer": {
+            "value": false,
+            "reason": "ko"
+          },
+          "hints": [
+            "刚被吃，不能马上吃回来，要先去别处走一步"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 3,
+            "y": 3
+          },
+          "highlight": [
+            {
+              "x": 3,
+              "y": 3
+            }
+          ],
+          "justCaptured": {
+            "x": 3,
+            "y": 3
+          },
+          "demoFirst": {
+            "move": {
+              "x": 2,
+              "y": 3
+            },
+            "color": "black"
+          }
+        },
+        {
+          "id": "day17-p03",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".O...",
+            "OXO..",
+            "X.X..",
+            ".X..."
+          ],
+          "toPlay": "white",
+          "prompt": {
+            "voice": "v_day17_p03",
+            "text": "小熊刚吃掉一只狐狸。白兔可以马上在这里吃回来吗？"
+          },
+          "answer": {
+            "value": false,
+            "reason": "ko"
+          },
+          "hints": [
+            "刚被吃，不能马上吃回来，要先去别处走一步"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 1,
+            "y": 3
+          },
+          "highlight": [
+            {
+              "x": 1,
+              "y": 3
+            }
+          ],
+          "justCaptured": {
+            "x": 1,
+            "y": 3
+          },
+          "demoFirst": {
+            "move": {
+              "x": 1,
+              "y": 2
+            },
+            "color": "black"
+          }
+        }
+      ],
+      "durationSec": 75
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day17_pm",
+      "text": "只需要宝宝知道“不能马上吃回来”，不考",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "vs_ai",
+      "boardSize": 5,
+      "ai": "beginner",
+      "hintBulbs": 0,
+      "win": "first_capture",
+      "endRules": null,
+      "durationSec": 180,
+      "captureTarget": 3,
+      "noLegalMoveLoses": true
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day17",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": 3
+}

@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "id": "day28",
+  "day": 28,
+  "week": 4,
+  "title": "毕业考",
+  "knowledgePoints": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    13,
+    15,
+    18
+  ],
+  "boardSize": 9,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 530
+  },
+  "pass": {
+    "minCorrect": 0,
+    "of": 0
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day28"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day28",
+      "script": [
+        {
+          "voice": "v_day28_l1",
+          "text": "毕业考！自己下完一盘 9 路棋，再自己数一数"
+        },
+        {
+          "voice": "v_day28_l2",
+          "text": "下完就能拿到毕业证书"
+        }
+      ]
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day28_pm",
+      "text": "家长只看不说，结束后颁发证书",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "vs_ai",
+      "boardSize": 9,
+      "ai": "beginner",
+      "hintBulbs": 0,
+      "win": "score",
+      "endRules": {
+        "passEnabled": false,
+        "autoEndWhenOnlyOwnTrueEyes": true,
+        "endPopupVoice": "v_game_end_count",
+        "parentEndButton": true,
+        "moveLimit": {
+          "5": 40,
+          "7": 80,
+          "9": 120
+        },
+        "deadStones": "ai_mark_parent_confirm",
+        "scoring": "chinese_area",
+        "komi": 0
+      },
+      "durationSec": 300,
+      "exam": true,
+      "passCriteria": {
+        "completeGame": true,
+        "scoreErrorMax": 2,
+        "noParentHelp": true
+      }
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day28",
+      "badge": "badge_graduate",
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": null,
+  "device": {
+    "minBoardCellPt": 44,
+    "preferredDevice": "ipad"
+  },
+  "certificate": "cert_graduate"
+}

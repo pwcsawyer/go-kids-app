@@ -1,0 +1,362 @@
+{
+  "schemaVersion": 1,
+  "id": "day19",
+  "day": 19,
+  "week": 3,
+  "title": "盖房子 2：真房间和漏风房间",
+  "knowledgePoints": [
+    14
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 580
+  },
+  "pass": {
+    "minCorrect": 6,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day19"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 120,
+      "animation": "anim_day19",
+      "script": [
+        {
+          "voice": "v_day19_l1",
+          "text": "房间墙角缺了一块，会漏风，是假房间（假眼）"
+        },
+        {
+          "voice": "v_day19_l2",
+          "text": "墙角补好，才是真房间（真眼）"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day19-p01",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            "X.XX.",
+            "XX.XX",
+            "OXXXO",
+            ".OOOO",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day19_p01",
+            "text": "这个房间是真房间吗？真的点绿勾，漏风点红叉"
+          },
+          "answer": {
+            "value": true
+          },
+          "hints": [
+            "看看房间斜对角的墙角"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 2,
+            "y": 1
+          },
+          "highlight": [
+            {
+              "x": 2,
+              "y": 1
+            }
+          ],
+          "game": "build_house"
+        },
+        {
+          "id": "day19-p02",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".OOOO",
+            ".OXXX",
+            ".OX.X",
+            ".X.X."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day19_p02",
+            "text": "这个房间是真房间吗？真的点绿勾，漏风点红叉"
+          },
+          "answer": {
+            "value": false
+          },
+          "hints": [
+            "看看房间斜对角的墙角"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 2,
+            "y": 4
+          },
+          "highlight": [
+            {
+              "x": 2,
+              "y": 4
+            }
+          ],
+          "game": "build_house"
+        },
+        {
+          "id": "day19-p03",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            "XX.XX",
+            ".XX.X",
+            "XXXXX",
+            "....O",
+            "....O"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day19_p03",
+            "text": "这个房间是真房间吗？真的点绿勾，漏风点红叉"
+          },
+          "answer": {
+            "value": true
+          },
+          "hints": [
+            "看看房间斜对角的墙角"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 1
+          },
+          "highlight": [
+            {
+              "x": 0,
+              "y": 1
+            }
+          ],
+          "game": "build_house"
+        },
+        {
+          "id": "day19-p04",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".X.X.",
+            ".OX.X",
+            ".OXXX",
+            ".OOOO",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day19_p04",
+            "text": "这个房间是真房间吗？真的点绿勾，漏风点红叉"
+          },
+          "answer": {
+            "value": false
+          },
+          "hints": [
+            "看看房间斜对角的墙角"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 2,
+            "y": 0
+          },
+          "highlight": [
+            {
+              "x": 2,
+              "y": 0
+            }
+          ],
+          "game": "build_house"
+        },
+        {
+          "id": "day19-p05",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            "...X.",
+            "...XX",
+            "XXX..",
+            "X.XXX",
+            ".XX.X"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day19_p05",
+            "text": "这个房间是真房间吗？真的点绿勾，漏风点红叉"
+          },
+          "answer": {
+            "value": true
+          },
+          "hints": [
+            "看看房间斜对角的墙角"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 3,
+            "y": 4
+          },
+          "highlight": [
+            {
+              "x": 3,
+              "y": 4
+            }
+          ],
+          "game": "build_house"
+        },
+        {
+          "id": "day19-p06",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".OOOO",
+            "OXXXO",
+            "XX.XX",
+            "X.XX."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day19_p06",
+            "text": "这个房间是真房间吗？真的点绿勾，漏风点红叉"
+          },
+          "answer": {
+            "value": false
+          },
+          "hints": [
+            "看看房间斜对角的墙角"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 1,
+            "y": 4
+          },
+          "highlight": [
+            {
+              "x": 1,
+              "y": 4
+            }
+          ],
+          "game": "build_house"
+        },
+        {
+          "id": "day19-p07",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".X...",
+            "XX...",
+            "..XXX",
+            "XXX.X",
+            "X.XX."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day19_p07",
+            "text": "这个房间是真房间吗？真的点绿勾，漏风点红叉"
+          },
+          "answer": {
+            "value": false
+          },
+          "hints": [
+            "看看房间斜对角的墙角"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 4,
+            "y": 4
+          },
+          "highlight": [
+            {
+              "x": 4,
+              "y": 4
+            }
+          ],
+          "game": "build_house"
+        },
+        {
+          "id": "day19-p08",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            "X.XX.",
+            "XX.XX",
+            "OXXXO",
+            ".OOOO",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day19_p08",
+            "text": "这个房间是真房间吗？真的点绿勾，漏风点红叉"
+          },
+          "answer": {
+            "value": true
+          },
+          "hints": [
+            "看看房间斜对角的墙角"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 4,
+            "y": 0
+          },
+          "highlight": [
+            {
+              "x": 4,
+              "y": 0
+            }
+          ],
+          "game": "build_house"
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day19_pm",
+      "text": "和宝宝用手指描一圈房间的墙，找缺口",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "vs_ai",
+      "boardSize": 5,
+      "ai": "beginner",
+      "hintBulbs": 0,
+      "win": "first_capture",
+      "endRules": null,
+      "durationSec": 180,
+      "captureTarget": 3,
+      "noLegalMoveLoses": true
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day19",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": 3
+}

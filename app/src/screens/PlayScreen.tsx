@@ -2,21 +2,28 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Animated, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Svg, { Path } from 'react-native-svg';
-import { Game, opponent, type Color, type Point } from '../engine';
+import { Game, isTrueEye, legalMoves, opponent, type Color, type Point } from '../engine';
 import {
   GoBoard,
-  KIDS_SIZES,
   type BoardHint,
   type CaptureBurst,
   type HintReason,
   type KidsBoardSize,
 } from '../components/GoBoard';
 import { colors } from '../theme';
-import { CAPTURE_MS, HINT_MS, motionEnabled, nativeDriver, PREVIEW_MS, TAP_GUARD_MS } from '../ui/timing';
+import { playPreviewSfx } from '../ui/sfx';
+import { CAPTURE_MS, HINT_MS, motionEnabled, nativeDriver } from '../ui/timing';
 
 interface PlayScreenProps {
-  /** 关卡或测试可传入已开局的局面；默认空盘 5 路。 */
   initialGame?: Game;
+  /** 教学关自动显示气。自由对局默认不显示。 */
+  showLiberties?: boolean;
+  /** 气高亮跟随这一方刚落下的子，避免亮到对方。 */
+  playerColor?: Color;
+  /** 关卡指定要看的那一块；优先于 playerColor。 */
+  libertyFocus?: Point | null;
+  /** 毕业考等模式可以关掉悔棋。 */
+  allowUndo?: boolean;
 }
 
 interface Preview {
@@ -34,6 +41,10 @@ function isKidsSize(size: number): size is KidsBoardSize {
   return size === 5 || size === 7 || size === 9;
 }
 
+function samePoint(a: Point, b: Point) {
+  return a.x === b.x && a.y === b.y;
+}
+
 function lastPlayPoint(game: Game): Point | null {
   for (let i = game.moves.length - 1; i >= 0; i--) {
     const move = game.moves[i];
@@ -42,46 +53,56 @@ function lastPlayPoint(game: Game): Point | null {
   return null;
 }
 
-export function PlayScreen({ initialGame }: PlayScreenProps = {}) {
+function lastStoneOf(game: Game, color: Color): Point | null {
+  for (let i = game.moves.length - 1; i >= 0; i--) {
+    const move = game.moves[i];
+    if (move.type === 'play' && move.color === color) return move.point;
+  }
+  return null;
+}
+
+/** 棋盘尽量占满可用高度，可点格子不小于 56。 */
+export function fitBoard(winW: number, winH: number, size: number) {
+  const landscape = winW > winH;
+  const roomW = winW - (landscape ? 232 : 24);
+  const roomH = winH - (landscape ? 16 : 200);
+  const room = Math.floor(Math.min(roomW, roomH));
+  const cell = Math.max(56, Math.floor(room / size));
+  return { landscape, cell, boardPx: cell * size };
+}
+
+export function PlayScreen({
+  initialGame,
+  showLiberties = false,
+  playerColor = 'black',
+  libertyFocus = null,
+  allowUndo = true,
+}: PlayScreenProps = {}) {
   const gameRef = useRef<Game>(initialGame ?? new Game(5));
-  const [size, setSize] = useState<KidsBoardSize>(() => {
-    const current = initialGame?.board.size ?? 5;
-    return isKidsSize(current) ? current : 5;
-  });
   const [revision, setRevision] = useState(0);
   const [preview, setPreview] = useState<Preview | null>(null);
   const [hint, setHint] = useState<BoardHint | null>(null);
+  const [suggestion, setSuggestion] = useState<Point | null>(null);
   const [shake, setShake] = useState(0);
   const [flying, setFlying] = useState<CaptureBurst | null>(null);
   const [flash, setFlash] = useState<Flash | null>(null);
-  const [showStars, setShowStars] = useState(false);
-  const [slot, setSlot] = useState<{ w: number; h: number } | null>(null);
-
-  const previewTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [misses, setMisses] = useState(0);
   const hintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastTap = useRef(0);
   const hintSeq = useRef(0);
-
   const { width: winW, height: winH } = useWindowDimensions();
   const game = gameRef.current;
   void revision;
 
+  const size = isKidsSize(game.board.size) ? game.board.size : 5;
+  const { landscape, boardPx } = fitBoard(winW, winH, size);
+
   useEffect(() => {
     return () => {
-      if (previewTimer.current) clearTimeout(previewTimer.current);
       if (hintTimer.current) clearTimeout(hintTimer.current);
     };
   }, []);
 
   const refresh = () => setRevision((n) => n + 1);
-
-  const clearPreview = () => {
-    if (previewTimer.current) {
-      clearTimeout(previewTimer.current);
-      previewTimer.current = null;
-    }
-    setPreview(null);
-  };
 
   const showHint = (point: Point, reason: HintReason) => {
     hintSeq.current += 1;
@@ -96,15 +117,18 @@ export function PlayScreen({ initialGame }: PlayScreenProps = {}) {
     const played = current.toPlay;
     const result = current.play(point);
     setPreview(null);
+    setSuggestion(null);
     if (!result.legal) {
       const reason = result.reason;
       if (reason === 'occupied' || reason === 'suicide' || reason === 'ko' || reason === 'game_over') {
         showHint(point, reason);
       }
+      setMisses((n) => n + 1);
       return;
     }
+    setMisses(0);
     if (result.captured && result.captured.length > 0) {
-      const id = Date.now();
+      const id = hintSeq.current + 1;
       setFlying({ id, color: opponent(played), points: result.captured });
       setFlash({ id, color: played, n: result.captured.length });
     }
@@ -112,155 +136,128 @@ export function PlayScreen({ initialGame }: PlayScreenProps = {}) {
   };
 
   const onPressPoint = (point: Point) => {
-    const now = Date.now();
-    if (now - lastTap.current < TAP_GUARD_MS) return;
-    if (previewTimer.current) return;
-    lastTap.current = now;
-
     const current = gameRef.current;
     if (current.isOver) {
       showHint(point, 'game_over');
       return;
     }
     const verdict = current.isLegalMove(point);
-    if (!verdict.legal && verdict.reason === 'occupied') {
-      showHint(point, 'occupied');
+    if (!verdict.legal) {
+      setPreview(null);
+      setMisses((n) => n + 1);
+      const reason = verdict.reason;
+      if (reason === 'occupied' || reason === 'suicide' || reason === 'ko' || reason === 'game_over') {
+        showHint(point, reason);
+      }
       return;
     }
-    if (!verdict.legal && (verdict.reason === 'suicide' || verdict.reason === 'ko')) {
-      setPreview({ point, color: current.toPlay });
-      previewTimer.current = setTimeout(() => {
-        previewTimer.current = null;
-        setPreview(null);
-        showHint(point, verdict.reason as 'suicide' | 'ko');
-      }, PREVIEW_MS);
-      return;
-    }
-    if (!verdict.legal) return;
-
-    setPreview({ point, color: current.toPlay });
-    previewTimer.current = setTimeout(() => {
-      previewTimer.current = null;
+    if (preview && preview.color === current.toPlay && samePoint(preview.point, point)) {
       commit(point);
-    }, PREVIEW_MS);
+      return;
+    }
+    setPreview({ point, color: current.toPlay });
+    playPreviewSfx();
   };
 
   const onUndo = () => {
-    if (previewTimer.current) {
-      clearPreview();
-      return;
-    }
+    setPreview(null);
+    setSuggestion(null);
     if (!gameRef.current.undo()) return;
     setHint(null);
     setFlying(null);
     setFlash(null);
+    setMisses(0);
     refresh();
   };
 
-  const onPass = () => {
-    if (previewTimer.current) {
-      clearPreview();
-      return;
-    }
-    if (gameRef.current.isOver) return;
-    if (!gameRef.current.pass()) return;
-    setHint(null);
-    refresh();
+  const onHint = () => {
+    const current = gameRef.current;
+    if (current.isOver) return;
+    const capture = current.findCaptureMoves()[0]?.point;
+    const point =
+      capture ??
+      legalMoves(current.board, current.toPlay, current.koPoint).find(
+        (candidate) => !isTrueEye(current.board, candidate, current.toPlay),
+      );
+    if (point) setSuggestion(point);
   };
 
-  const restart = (next: KidsBoardSize) => {
-    clearPreview();
-    gameRef.current = new Game(next);
-    setSize(next);
-    setHint(null);
-    setFlying(null);
-    setFlash(null);
-    setShowStars(false);
-    refresh();
-  };
-
-  const fitted = slot ? Math.min(slot.w - 8, slot.h - 8) : Math.min(winW - 16, winH * 0.62);
-  const boardPx = Math.max(220, Math.floor(fitted));
   const lastMove = lastPlayPoint(game);
+  const libertyPoint = libertyFocus ?? (showLiberties ? lastStoneOf(game, playerColor) : null);
+  const score = game.isOver ? game.score() : null;
+  const canUndo = game.moves.length > 0;
 
   return (
     <SafeAreaView style={styles.root} edges={['top', 'bottom', 'left', 'right']}>
-      <View style={styles.header}>
-        <View style={styles.sizes}>
-          {KIDS_SIZES.map((n) => (
-            <Pressable
-              key={n}
-              testID={`size-${n}`}
-              accessibilityRole="button"
-              accessibilityLabel={`${n}路棋盘`}
-              accessibilityState={{ selected: size === n }}
-              onPress={() => {
-                if (n !== size) restart(n);
-              }}
-              style={({ pressed }) => [styles.sizeBtn, size === n && styles.sizeBtnOn, pressed && styles.pressed]}
-            >
-              <Text style={styles.sizeText}>{n}</Text>
-            </Pressable>
-          ))}
+      <View testID="play-layout" style={[styles.layout, landscape ? styles.layoutLand : styles.layoutPort]}>
+        <View testID="board-pane" style={styles.boardPane}>
+          {!landscape ? <StatusRow game={game} flash={flash} /> : null}
+          <GoBoard
+            key={size}
+            board={game.board}
+            width={boardPx}
+            minHit={56}
+            lastMove={lastMove}
+            libertyFocus={libertyPoint}
+            preview={preview}
+            suggestion={suggestion}
+            hint={hint}
+            shakeSignal={shake}
+            flying={flying}
+            onPressPoint={onPressPoint}
+          />
+          {score ? (
+            <View testID="score-banner" accessibilityLabel="下完啦，数一数！" style={styles.banner}>
+              <Text style={styles.bannerTitle}>下完啦，数一数！</Text>
+              <Text testID="score-black" style={styles.bannerScore}>
+                黑 {score.black}
+              </Text>
+              <Text testID="score-white" style={styles.bannerScore}>
+                白 {score.white}
+              </Text>
+            </View>
+          ) : null}
         </View>
-        <Pressable
-          testID="toggle-liberties"
-          accessibilityRole="button"
-          accessibilityLabel={showStars ? '气的星星开着' : '看看气'}
-          accessibilityState={{ selected: showStars }}
-          onPress={() => setShowStars((v) => !v)}
-          style={({ pressed }) => [styles.starBtn, showStars && styles.starBtnOn, pressed && styles.pressed]}
-        >
-          <Text style={styles.starGlyph}>✦</Text>
-        </Pressable>
-      </View>
-
-      <View style={styles.scoreRow}>
-        <ScoreBadge color="black" count={game.captures.black} flash={flash?.color === 'black' ? flash : null} />
-        {game.isOver ? (
-          <View testID="game-done" accessibilityLabel="都停手啦" style={styles.done}>
-            <Text style={styles.doneEmoji}>🌙</Text>
-          </View>
-        ) : (
-          <TurnStone color={game.toPlay} />
-        )}
-        <ScoreBadge color="white" count={game.captures.white} flash={flash?.color === 'white' ? flash : null} />
-      </View>
-
-      <View
-        style={styles.boardSlot}
-        onLayout={(event) => {
-          const { width, height } = event.nativeEvent.layout;
-          setSlot({ w: width, h: height });
-        }}
-      >
-        <GoBoard
-          key={size}
-          board={game.board}
-          width={boardPx}
-          lastMove={lastMove}
-          libertyFocus={showStars ? lastMove : null}
-          preview={preview}
-          hint={hint}
-          shakeSignal={shake}
-          flying={flying}
-          onPressPoint={onPressPoint}
-        />
-      </View>
-
-      <View style={styles.bottom}>
-        <RoundButton
-          testID="btn-pass"
-          label="停一手"
-          size={72}
-          disabled={game.isOver}
-          onPress={onPass}
-          icon={<PassIcon />}
-        />
-        <RoundButton testID="btn-undo" label="倒回去" size={96} primary onPress={onUndo} icon={<UndoIcon />} />
-        <RoundButton testID="btn-restart" label="重新开始" size={72} onPress={() => restart(size)} icon={<RestartIcon />} />
+        <View testID="button-rail" style={landscape ? styles.rail : styles.bottom}>
+          {landscape ? <StatusRow game={game} flash={flash} compact /> : null}
+          {allowUndo ? (
+            <RoundButton
+              testID="btn-undo"
+              label="悔棋"
+              size={96}
+              primary
+              disabled={!canUndo}
+              onPress={onUndo}
+              icon={<UndoIcon />}
+            />
+          ) : null}
+          <RoundButton
+            testID="btn-hint"
+            label="提示"
+            size={80}
+            selected={misses >= 3}
+            onPress={onHint}
+            icon={<Text style={styles.bulb}>💡</Text>}
+          />
+        </View>
       </View>
     </SafeAreaView>
+  );
+}
+
+function StatusRow({ game, flash, compact = false }: { game: Game; flash: Flash | null; compact?: boolean }) {
+  return (
+    <View style={[styles.scoreRow, compact && styles.scoreCol]}>
+      <ScoreBadge color="black" count={game.captures.black} flash={flash?.color === 'black' ? flash : null} />
+      {game.isOver ? (
+        <View testID="game-done" accessibilityLabel="下完啦，数一数！" style={styles.done}>
+          <Text style={styles.doneEmoji}>🌙</Text>
+        </View>
+      ) : (
+        <TurnStone color={game.toPlay} />
+      )}
+      <ScoreBadge color="white" count={game.captures.white} flash={flash?.color === 'white' ? flash : null} />
+    </View>
   );
 }
 
@@ -326,10 +323,7 @@ function TurnStone({ color }: { color: Color }) {
     <Animated.View
       testID={`turn-${color}`}
       accessibilityLabel={color === 'black' ? '轮到黑棋' : '轮到白棋'}
-      style={[
-        styles.turn,
-        { backgroundColor: stone, borderColor: edge, transform: [{ scale }] },
-      ]}
+      style={[styles.turn, { backgroundColor: stone, borderColor: edge, transform: [{ scale }] }]}
     >
       <View style={[styles.eye, { backgroundColor: color === 'black' ? colors.white : colors.black, left: 16 }]} />
       <View style={[styles.eye, { backgroundColor: color === 'black' ? colors.white : colors.black, right: 16 }]} />
@@ -345,6 +339,7 @@ function RoundButton({
   icon,
   primary,
   disabled,
+  selected,
 }: {
   testID: string;
   label: string;
@@ -353,13 +348,15 @@ function RoundButton({
   icon: ReactNode;
   primary?: boolean;
   disabled?: boolean;
+  selected?: boolean;
 }) {
   return (
     <Pressable
       testID={testID}
       accessibilityRole="button"
       accessibilityLabel={label}
-      accessibilityState={{ disabled: !!disabled }}
+      accessibilityState={{ disabled: !!disabled, selected: !!selected }}
+      disabled={disabled}
       onPress={onPress}
       style={({ pressed }) => [
         styles.round,
@@ -367,7 +364,7 @@ function RoundButton({
           width: size,
           height: size,
           borderRadius: size / 2,
-          backgroundColor: primary ? colors.orange : colors.white,
+          backgroundColor: selected ? colors.star : primary ? colors.orange : colors.white,
           opacity: disabled ? 0.4 : 1,
         },
         pressed && !disabled && styles.pressed,
@@ -376,10 +373,6 @@ function RoundButton({
       {icon}
     </Pressable>
   );
-}
-
-function PassIcon() {
-  return <Text style={styles.passHand}>✋</Text>;
 }
 
 function UndoIcon() {
@@ -397,158 +390,71 @@ function UndoIcon() {
   );
 }
 
-function RestartIcon() {
-  return (
-    <Svg width={36} height={36} viewBox="0 0 36 36">
-      <Path
-        d="M8 18a10 10 0 1 0 3-7"
-        stroke={colors.text}
-        strokeWidth={3}
-        fill="none"
-        strokeLinecap="round"
-      />
-      <Path d="M8 8v7h7" stroke={colors.text} strokeWidth={3} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </Svg>
-  );
-}
-
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: colors.bg,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingTop: 4,
-    paddingBottom: 4,
-  },
-  sizes: {
-    flexDirection: 'row',
-    gap: 16,
-  },
-  sizeBtn: {
-    minWidth: 64,
-    minHeight: 64,
-    paddingHorizontal: 8,
-    borderRadius: 32,
-    backgroundColor: colors.white,
+  root: { flex: 1, backgroundColor: colors.bg },
+  layout: { flex: 1 },
+  layoutLand: { flexDirection: 'row' },
+  layoutPort: { flexDirection: 'column' },
+  boardPane: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  rail: {
+    width: 208,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 3,
-    borderColor: colors.woodEdge,
-  },
-  sizeBtnOn: {
-    backgroundColor: colors.orange,
-    borderColor: colors.orange,
-  },
-  sizeText: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: colors.text,
-  },
-  starBtn: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 3,
-    borderColor: colors.woodEdge,
-  },
-  starBtnOn: {
-    backgroundColor: colors.star,
-    borderColor: colors.star,
-  },
-  starGlyph: {
-    fontSize: 32,
-    color: colors.line,
-    lineHeight: 38,
-  },
-  pressed: {
-    transform: [{ scale: 0.94 }],
-  },
-  scoreRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    minHeight: 88,
-  },
-  badge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    minWidth: 120,
-    minHeight: 64,
-  },
-  miniStone: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    borderWidth: 2,
-  },
-  count: {
-    fontSize: 48,
-    fontWeight: '700',
-    color: colors.text,
-    minWidth: 36,
-  },
-  basket: {
-    fontSize: 28,
-  },
-  plus: {
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    fontSize: 28,
-    fontWeight: '700',
-    color: colors.green,
-  },
-  turn: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
-    borderWidth: 3,
-  },
-  eye: {
-    position: 'absolute',
-    top: 26,
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-  },
-  done: {
-    width: 72,
-    height: 72,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  doneEmoji: {
-    fontSize: 48,
-    lineHeight: 56,
-  },
-  boardSlot: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    gap: 20,
+    paddingVertical: 16,
+    paddingRight: 12,
   },
   bottom: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 16,
+    gap: 20,
     paddingHorizontal: 16,
     paddingTop: 8,
     paddingBottom: 12,
   },
-  passHand: {
-    fontSize: 34,
-    lineHeight: 40,
+  pressed: { transform: [{ scale: 0.94 }] },
+  scoreRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 12,
+    minHeight: 88,
+    alignSelf: 'stretch',
   },
+  scoreCol: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    gap: 8,
+    minHeight: 0,
+    paddingHorizontal: 0,
+  },
+  badge: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 64 },
+  miniStone: { width: 36, height: 36, borderRadius: 18, borderWidth: 2 },
+  count: { fontSize: 40, fontWeight: '700', color: colors.text, minWidth: 28 },
+  basket: { fontSize: 28 },
+  plus: { position: 'absolute', right: 0, top: 0, fontSize: 28, fontWeight: '700', color: colors.green },
+  turn: { width: 72, height: 72, borderRadius: 36, borderWidth: 3 },
+  eye: { position: 'absolute', top: 26, width: 8, height: 8, borderRadius: 4 },
+  done: { width: 72, height: 72, alignItems: 'center', justifyContent: 'center' },
+  doneEmoji: { fontSize: 48, lineHeight: 56 },
+  banner: {
+    position: 'absolute',
+    left: 16,
+    right: 16,
+    bottom: 12,
+    backgroundColor: colors.white,
+    borderRadius: 20,
+    borderWidth: 3,
+    borderColor: colors.woodEdge,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    gap: 4,
+  },
+  bannerTitle: { fontSize: 28, fontWeight: '700', color: colors.text },
+  bannerScore: { fontSize: 22, fontWeight: '700', color: colors.text },
+  bulb: { fontSize: 36, lineHeight: 42 },
   round: {
     alignItems: 'center',
     justifyContent: 'center',

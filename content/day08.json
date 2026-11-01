@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 1,
+  "id": "day08",
+  "day": 8,
+  "week": 2,
+  "title": "打吃：喊救命",
+  "knowledgePoints": [
+    5
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 430
+  },
+  "pass": {
+    "minCorrect": 6,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day08"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day08",
+      "script": [
+        {
+          "voice": "v_day08_l1",
+          "text": "棋子只剩一个小洞时，会闪红光喊救命"
+        },
+        {
+          "voice": "v_day08_l2",
+          "text": "这叫“打吃”"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day08-p01",
+          "kind": "tap_stones",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".X...",
+            "OOX.O"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day08_p01",
+            "text": "哪只坏狐狸只剩一个小洞，在喊救命？点它"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 0,
+                "y": 4
+              },
+              {
+                "x": 1,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "数一数每只狐狸的小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "showLiberties": true
+        },
+        {
+          "id": "day08-p02",
+          "kind": "tap_stones",
+          "boardSize": 5,
+          "board": [
+            "OOX..",
+            ".X...",
+            "...O.",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day08_p02",
+            "text": "哪只坏狐狸只剩一个小洞，在喊救命？点它"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 1,
+                "y": 0
+              }
+            ]
+          },
+          "hints": [
+            "数一数每只狐狸的小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "showLiberties": true
+        },
+        {
+          "id": "day08-p03",
+          "kind": "tap_stones",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".O.X.",
+            "..XOO"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day08_p03",
+            "text": "哪只坏狐狸只剩一个小洞，在喊救命？点它"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 3,
+                "y": 4
+              },
+              {
+                "x": 4,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "数一数每只狐狸的小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "showLiberties": true
+        },
+        {
+          "id": "day08-p04",
+          "kind": "tap_stones",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "..X..",
+            "..OX.",
+            "..X..",
+            ".O..."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day08_p04",
+            "text": "哪只坏狐狸只剩一个小洞，在喊救命？点它"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 2,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "数一数每只狐狸的小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "showLiberties": true
+        },
+        {
+          "id": "day08-p05",
+          "kind": "tap_stones",
+          "boardSize": 5,
+          "board": [
+            ".O...",
+            "...X.",
+            "..XOX",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day08_p05",
+            "text": "哪只坏狐狸只剩一个小洞，在喊救命？点它"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 3,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "数一数每只狐狸的小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "showLiberties": true
+        },
+        {
+          "id": "day08-p06",
+          "kind": "tap_stones",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "O....",
+            ".....",
+            ".XOX."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day08_p06",
+            "text": "哪只坏狐狸只剩一个小洞，在喊救命？点它"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 2,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "数一数每只狐狸的小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "showLiberties": true
+        },
+        {
+          "id": "day08-p07",
+          "kind": "tap_stones",
+          "boardSize": 5,
+          "board": [
+            "...X.",
+            ".XOOX",
+            "..XX.",
+            "....O",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day08_p07",
+            "text": "哪只坏狐狸只剩一个小洞，在喊救命？点它"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 2,
+                "y": 1
+              },
+              {
+                "x": 3,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "数一数每只狐狸的小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "showLiberties": true
+        },
+        {
+          "id": "day08-p08",
+          "kind": "tap_stones",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "...X.",
+            "..XO.",
+            "...X.",
+            "O...."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day08_p08",
+            "text": "哪只坏狐狸只剩一个小洞，在喊救命？点它"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 3,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "数一数每只狐狸的小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "showLiberties": true
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day08_pm",
+      "text": "问宝宝：“哪只狐狸只剩一个洞了？”",
+      "durationSec": 15
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day08",
+      "badge": null,
+      "durationSec": 20
+    }
+  ]
+}

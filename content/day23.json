@@ -1,0 +1,282 @@
+{
+  "schemaVersion": 1,
+  "id": "day23",
+  "day": 23,
+  "week": 4,
+  "title": "数子：谁赢了",
+  "knowledgePoints": [
+    18
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 530
+  },
+  "pass": {
+    "minCorrect": 4,
+    "of": 6
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day23"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 120,
+      "animation": "anim_day23",
+      "script": [
+        {
+          "voice": "v_day23_l1",
+          "text": "没地方可下了，就数一数"
+        },
+        {
+          "voice": "v_day23_l2",
+          "text": "小熊的棋子 + 小熊的花园，和白兔比，多的赢"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day23-p01",
+          "kind": "score_compare",
+          "boardSize": 5,
+          "board": [
+            ".XO..",
+            ".XO..",
+            ".XO..",
+            ".XO..",
+            ".XO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day23_p01",
+            "text": "数一数：小熊的棋子和花园加起来，和白兔比，谁多？"
+          },
+          "answer": {
+            "winner": "white",
+            "score": {
+              "blackStones": 5,
+              "whiteStones": 5,
+              "blackTerritory": 5,
+              "whiteTerritory": 10,
+              "black": 10,
+              "white": 15
+            }
+          },
+          "hints": [
+            "先数棋子，再数花园，加起来"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "countMode": "stones_plus_territory"
+        },
+        {
+          "id": "day23-p02",
+          "kind": "score_compare",
+          "boardSize": 5,
+          "board": [
+            "..XO.",
+            "..XO.",
+            "..XO.",
+            ".XO..",
+            ".XO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day23_p02",
+            "text": "数一数：小熊的棋子和花园加起来，和白兔比，谁多？"
+          },
+          "answer": {
+            "winner": "black",
+            "score": {
+              "blackStones": 5,
+              "whiteStones": 5,
+              "blackTerritory": 8,
+              "whiteTerritory": 7,
+              "black": 13,
+              "white": 12
+            }
+          },
+          "hints": [
+            "先数棋子，再数花园，加起来"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "countMode": "stones_plus_territory"
+        },
+        {
+          "id": "day23-p03",
+          "kind": "score_compare",
+          "boardSize": 5,
+          "board": [
+            ".XO..",
+            ".XO..",
+            "..XO.",
+            "..XO.",
+            "..XO."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day23_p03",
+            "text": "数一数：小熊的棋子和花园加起来，和白兔比，谁多？"
+          },
+          "answer": {
+            "winner": "black",
+            "score": {
+              "blackStones": 5,
+              "whiteStones": 5,
+              "blackTerritory": 8,
+              "whiteTerritory": 7,
+              "black": 13,
+              "white": 12
+            }
+          },
+          "hints": [
+            "先数棋子，再数花园，加起来"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "countMode": "stones_plus_territory"
+        },
+        {
+          "id": "day23-p04",
+          "kind": "score_compare",
+          "boardSize": 5,
+          "board": [
+            ".XO..",
+            "..XO.",
+            "..XO.",
+            "..XO.",
+            "..XO."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day23_p04",
+            "text": "数一数：小熊的棋子和花园加起来，和白兔比，谁多？"
+          },
+          "answer": {
+            "winner": "black",
+            "score": {
+              "blackStones": 5,
+              "whiteStones": 5,
+              "blackTerritory": 9,
+              "whiteTerritory": 6,
+              "black": 14,
+              "white": 11
+            }
+          },
+          "hints": [
+            "先数棋子，再数花园，加起来"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "countMode": "stones_plus_territory"
+        },
+        {
+          "id": "day23-p05",
+          "kind": "score_compare",
+          "boardSize": 7,
+          "board": [
+            "..XO...",
+            "..XO...",
+            "...XO..",
+            "..XO...",
+            "...XO..",
+            "...XO..",
+            "...XO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day23_p05",
+            "text": "数一数：小熊的棋子和花园加起来，和白兔比，谁多？"
+          },
+          "answer": {
+            "winner": "black",
+            "score": {
+              "blackStones": 7,
+              "whiteStones": 7,
+              "blackTerritory": 18,
+              "whiteTerritory": 17,
+              "black": 25,
+              "white": 24
+            }
+          },
+          "hints": [
+            "先数棋子，再数花园，加起来"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "countMode": "stones_plus_territory"
+        },
+        {
+          "id": "day23-p06",
+          "kind": "score_compare",
+          "boardSize": 7,
+          "board": [
+            "...XO..",
+            "..XO...",
+            "..XO...",
+            ".XO....",
+            ".XO....",
+            ".XO....",
+            ".XO...."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day23_p06",
+            "text": "数一数：小熊的棋子和花园加起来，和白兔比，谁多？"
+          },
+          "answer": {
+            "winner": "white",
+            "score": {
+              "blackStones": 7,
+              "whiteStones": 7,
+              "blackTerritory": 11,
+              "whiteTerritory": 24,
+              "black": 18,
+              "white": 31
+            }
+          },
+          "hints": [
+            "先数棋子，再数花园，加起来"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "countMode": "stones_plus_territory"
+        }
+      ],
+      "durationSec": 150
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day23_pm",
+      "text": "和宝宝一起点数，数完说出谁赢",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "vs_ai",
+      "boardSize": 7,
+      "ai": "beginner",
+      "hintBulbs": 0,
+      "win": "first_capture",
+      "endRules": null,
+      "durationSec": 180,
+      "captureTarget": 3,
+      "noLegalMoveLoses": true
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day23",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": 3
+}

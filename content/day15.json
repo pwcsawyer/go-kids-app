@@ -1,0 +1,362 @@
+{
+  "schemaVersion": 1,
+  "id": "day15",
+  "day": 15,
+  "week": 3,
+  "title": "禁入点：憋住的路口",
+  "knowledgePoints": [
+    7
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 580
+  },
+  "pass": {
+    "minCorrect": 6,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day15"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 120,
+      "animation": "anim_day15",
+      "script": [
+        {
+          "voice": "v_day15_l1",
+          "text": "一个小洞都没有的路口，小熊不能住进去"
+        },
+        {
+          "voice": "v_day15_l2",
+          "text": "这叫“禁入点”"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day15-p01",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".XXX.",
+            ".XX.O",
+            ".X.XO",
+            "..XO.",
+            "....O"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day15_p01",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": false,
+            "reason": "suicide"
+          },
+          "hints": [
+            "放进去一口气都没有，憋住了"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 4,
+            "y": 3
+          },
+          "highlight": [
+            {
+              "x": 4,
+              "y": 3
+            }
+          ]
+        },
+        {
+          "id": "day15-p02",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".OOO.",
+            "OOX.O",
+            ".OOOX",
+            "X.XXX",
+            ".X.X."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day15_p02",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": true,
+            "reason": "normal"
+          },
+          "hints": [
+            "放进去还有小洞可以呼吸"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 4,
+            "y": 4
+          },
+          "highlight": [
+            {
+              "x": 4,
+              "y": 4
+            }
+          ]
+        },
+        {
+          "id": "day15-p03",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            "OO.X.",
+            "OXXXX",
+            ".O...",
+            "OOOO.",
+            "OOX.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day15_p03",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": false,
+            "reason": "suicide"
+          },
+          "hints": [
+            "放进去一口气都没有，憋住了"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 2
+          },
+          "highlight": [
+            {
+              "x": 0,
+              "y": 2
+            }
+          ]
+        },
+        {
+          "id": "day15-p04",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".OOO.",
+            "O.O.X",
+            "X..O.",
+            "XOO..",
+            "O.XXO"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day15_p04",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": true,
+            "reason": "normal"
+          },
+          "hints": [
+            "放进去还有小洞可以呼吸"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 1,
+            "y": 2
+          },
+          "highlight": [
+            {
+              "x": 1,
+              "y": 2
+            }
+          ]
+        },
+        {
+          "id": "day15-p05",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".X...",
+            "XXXXO",
+            "OO.O.",
+            "X.X.O",
+            ".OX.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day15_p05",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": false,
+            "reason": "suicide"
+          },
+          "hints": [
+            "放进去一口气都没有，憋住了"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 4,
+            "y": 2
+          },
+          "highlight": [
+            {
+              "x": 4,
+              "y": 2
+            }
+          ]
+        },
+        {
+          "id": "day15-p06",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".OX.O",
+            "....O",
+            "..OO.",
+            "XXXO.",
+            "..XXX"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day15_p06",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": true,
+            "reason": "normal"
+          },
+          "hints": [
+            "放进去还有小洞可以呼吸"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 4,
+            "y": 2
+          },
+          "highlight": [
+            {
+              "x": 4,
+              "y": 2
+            }
+          ]
+        },
+        {
+          "id": "day15-p07",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".O.O.",
+            "...XO",
+            "OXXXX",
+            "O.X.X",
+            ".OO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day15_p07",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": false,
+            "reason": "suicide"
+          },
+          "hints": [
+            "放进去一口气都没有，憋住了"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 4
+          },
+          "highlight": [
+            {
+              "x": 0,
+              "y": 4
+            }
+          ]
+        },
+        {
+          "id": "day15-p08",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".X...",
+            "OO.XO",
+            "XX.XX",
+            "XOXXO",
+            "..O.O"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day15_p08",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": true,
+            "reason": "normal"
+          },
+          "hints": [
+            "放进去还有小洞可以呼吸"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 2,
+            "y": 1
+          },
+          "highlight": [
+            {
+              "x": 2,
+              "y": 1
+            }
+          ]
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day15_pm",
+      "text": "问宝宝：“住进去会不会憋住？”",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "vs_ai",
+      "boardSize": 5,
+      "ai": "beginner",
+      "hintBulbs": 0,
+      "win": "first_capture",
+      "endRules": null,
+      "durationSec": 180,
+      "captureTarget": 1,
+      "noLegalMoveLoses": true
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day15",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": 1
+}

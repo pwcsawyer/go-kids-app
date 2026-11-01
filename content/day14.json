@@ -1,0 +1,334 @@
+{
+  "schemaVersion": 1,
+  "id": "day14",
+  "day": 14,
+  "week": 2,
+  "title": "周测 + 吃子棋",
+  "knowledgePoints": [
+    5,
+    6,
+    10,
+    4
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 580
+  },
+  "pass": {
+    "minCorrect": 6,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day14"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 120,
+      "animation": "anim_day14",
+      "script": [
+        {
+          "voice": "v_day14_l1",
+          "text": "先做小测验，再和白兔玩吃子棋：谁先吃掉一颗谁赢"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day14-p01",
+          "kind": "tap_stones",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "....O",
+            ".....",
+            "X....",
+            "OOX.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day14_p01",
+            "text": "哪只坏狐狸只剩一个小洞，在喊救命？点它"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 0,
+                "y": 4
+              },
+              {
+                "x": 1,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "数一数每只狐狸的小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "showLiberties": true
+        },
+        {
+          "id": "day14-p02",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".X...",
+            "XO...",
+            ".X...",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day14_p02",
+            "text": "堵住狐狸最后一个小洞，救出小猫！"
+          },
+          "answer": {
+            "goal": "capture",
+            "points": [
+              {
+                "x": 2,
+                "y": 2
+              }
+            ],
+            "minCaptured": 1
+          },
+          "hints": [
+            "狐狸只剩一个洞，就在这附近"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "save_cat"
+        },
+        {
+          "id": "day14-p03",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            "...XO",
+            "....O",
+            "....X",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day14_p03",
+            "text": "堵住狐狸最后一个小洞，救出小猫！"
+          },
+          "answer": {
+            "goal": "capture",
+            "points": [
+              {
+                "x": 3,
+                "y": 1
+              }
+            ],
+            "minCaptured": 2
+          },
+          "hints": [
+            "狐狸只剩一个洞，就在这附近"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "save_cat"
+        },
+        {
+          "id": "day14-p04",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            "..O..",
+            ".OX..",
+            "..O..",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day14_p04",
+            "text": "小熊被围住只剩一个洞了，帮它逃跑！"
+          },
+          "answer": {
+            "goal": "escape",
+            "points": [
+              {
+                "x": 3,
+                "y": 1
+              }
+            ],
+            "target": {
+              "x": 2,
+              "y": 1
+            }
+          },
+          "hints": [
+            "往空空的地方跑，多找几个小洞"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day14-p05",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "...XX",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day14_p05",
+            "text": "这两只小熊手拉手了吗？对点绿勾，不对点红叉"
+          },
+          "answer": {
+            "value": true
+          },
+          "hints": [
+            "直直挨着才能拉到手，斜着够不着"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        },
+        {
+          "id": "day14-p06",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "..X.X",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day14_p06",
+            "text": "走散的两只小熊，下一步让它们手拉手！"
+          },
+          "answer": {
+            "goal": "connect",
+            "points": [
+              {
+                "x": 3,
+                "y": 1
+              }
+            ],
+            "stones": [
+              {
+                "x": 2,
+                "y": 1
+              },
+              {
+                "x": 4,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "中间那个路口放一只小熊"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "find_friends"
+        },
+        {
+          "id": "day14-p07",
+          "kind": "play_to_goal",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "....X",
+            "...XO",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day14_p07",
+            "text": "堵住狐狸最后一个小洞，救出小猫！"
+          },
+          "answer": {
+            "goal": "capture",
+            "points": [
+              {
+                "x": 4,
+                "y": 4
+              }
+            ],
+            "minCaptured": 1
+          },
+          "hints": [
+            "狐狸只剩一个洞，就在这附近"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "save_cat"
+        },
+        {
+          "id": "day14-p08",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".X...",
+            ".X...",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day14_p08",
+            "text": "这两只小熊手拉手了吗？对点绿勾，不对点红叉"
+          },
+          "answer": {
+            "value": true
+          },
+          "hints": [
+            "直直挨着才能拉到手，斜着够不着"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo"
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day14_pm",
+      "text": "家长观战，宝宝吃到子就击掌",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "vs_ai",
+      "boardSize": 5,
+      "ai": "beginner",
+      "hintBulbs": 0,
+      "win": "first_capture",
+      "endRules": null,
+      "durationSec": 180,
+      "captureTarget": 1,
+      "noLegalMoveLoses": true
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day14",
+      "badge": "badge_week2",
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": 1
+}

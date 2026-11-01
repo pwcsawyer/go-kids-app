@@ -2,7 +2,7 @@ import { render, screen, userEvent, fireEvent } from '@testing-library/react-nat
 import { StyleSheet } from 'react-native';
 import type { ComponentProps } from 'react';
 import { Board } from '../../engine';
-import { GoBoard, isWithinSnap } from '../GoBoard';
+import { GoBoard, isWithinSnap, nearestPoint } from '../GoBoard';
 
 const press = { onPressPoint: jest.fn() };
 
@@ -56,6 +56,16 @@ describe('GoBoard', () => {
     const style = StyleSheet.flatten(screen.getByTestId('point-4-4').props.style);
     expect(style.width).toBeGreaterThanOrEqual(56);
     expect(style.height).toBeGreaterThanOrEqual(56);
+  });
+
+  test('格子小于 56 时放大热区并吸附到最近交叉点', async () => {
+    const width = 9 * 40;
+    await renderBoard(new Board(9), width);
+    const style = StyleSheet.flatten(screen.getByTestId('point-4-4').props.style);
+    expect(style.width).toBeGreaterThanOrEqual(56);
+    expect(style.height).toBeGreaterThanOrEqual(56);
+    expect(nearestPoint(20, 20, 9, 40, 56)).toEqual({ x: 0, y: 0 });
+    expect(nearestPoint(50, 20, 9, 40, 56)).toEqual({ x: 1, y: 0 });
   });
 
   test('最后一手标记', async () => {

@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "id": "day18",
+  "day": 18,
+  "week": 3,
+  "title": "盖房子 1：小房间",
+  "knowledgePoints": [
+    13
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 530
+  },
+  "pass": {
+    "minCorrect": 4,
+    "of": 6
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day18"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 120,
+      "animation": "anim_day18",
+      "script": [
+        {
+          "voice": "v_day18_l1",
+          "text": "小熊用棋子当砖，围出空空的小房间"
+        },
+        {
+          "voice": "v_day18_l2",
+          "text": "房间就是“眼”，狐狸进不来"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day18-p01",
+          "kind": "tap_points",
+          "boardSize": 5,
+          "board": [
+            ".XO..",
+            "XXO..",
+            ".XO..",
+            "XXO..",
+            ".XO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day18_p01",
+            "text": "小熊盖的房子里有小房间！点出所有小房间"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 0,
+                "y": 2
+              },
+              {
+                "x": 0,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "四周都是小熊墙的空路口就是房间"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day18-p02",
+          "kind": "tap_points",
+          "boardSize": 5,
+          "board": [
+            "X.XX.",
+            "XXX.X",
+            "..XXX",
+            "XX...",
+            ".X..."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day18_p02",
+            "text": "小熊盖的房子里有小房间！点出所有小房间"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              },
+              {
+                "x": 4,
+                "y": 0
+              },
+              {
+                "x": 3,
+                "y": 1
+              },
+              {
+                "x": 0,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "四周都是小熊墙的空路口就是房间"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day18-p03",
+          "kind": "tap_points",
+          "boardSize": 5,
+          "board": [
+            "....O",
+            "....O",
+            "XXXXX",
+            ".XX.X",
+            "XX.XX"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day18_p03",
+            "text": "小熊盖的房子里有小房间！点出所有小房间"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 0,
+                "y": 3
+              },
+              {
+                "x": 3,
+                "y": 3
+              },
+              {
+                "x": 2,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "四周都是小熊墙的空路口就是房间"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day18-p04",
+          "kind": "tap_points",
+          "boardSize": 5,
+          "board": [
+            "XXO..",
+            ".XXO.",
+            "X.XO.",
+            "XXXO.",
+            ".XOO."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day18_p04",
+            "text": "小熊盖的房子里有小房间！点出所有小房间"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 0,
+                "y": 1
+              },
+              {
+                "x": 1,
+                "y": 2
+              },
+              {
+                "x": 0,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "四周都是小熊墙的空路口就是房间"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day18-p05",
+          "kind": "tap_points",
+          "boardSize": 5,
+          "board": [
+            "..OX.",
+            "..OXX",
+            "..OX.",
+            "..OXX",
+            "..OX."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day18_p05",
+            "text": "小熊盖的房子里有小房间！点出所有小房间"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 4,
+                "y": 0
+              },
+              {
+                "x": 4,
+                "y": 2
+              },
+              {
+                "x": 4,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "四周都是小熊墙的空路口就是房间"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        },
+        {
+          "id": "day18-p06",
+          "kind": "tap_points",
+          "boardSize": 5,
+          "board": [
+            "...X.",
+            "...XX",
+            "XXX..",
+            "X.XXX",
+            ".XX.X"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day18_p06",
+            "text": "小熊盖的房子里有小房间！点出所有小房间"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 4,
+                "y": 0
+              },
+              {
+                "x": 1,
+                "y": 3
+              },
+              {
+                "x": 0,
+                "y": 4
+              },
+              {
+                "x": 3,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "四周都是小熊墙的空路口就是房间"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "game": "build_house"
+        }
+      ],
+      "durationSec": 150
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day18_pm",
+      "text": "问：“房间里狐狸进得来吗？”",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "parent_same_device",
+      "boardSize": 5,
+      "ai": null,
+      "hintBulbs": 0,
+      "win": "first_capture",
+      "endRules": null,
+      "durationSec": 180,
+      "captureTarget": 3,
+      "noLegalMoveLoses": true
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day18",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": 3
+}

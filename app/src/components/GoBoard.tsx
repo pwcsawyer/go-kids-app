@@ -25,8 +25,10 @@ export interface CaptureBurst {
 
 interface GoBoardProps {
   board: Board;
-  /** 棋盘边长（px）。交叉点热区 = 边长 / 路数，调用方应尽量给到 ≥56×路数。 */
+  /** 棋盘边长（px）。可点格子不小于 minHit（默认 56）。 */
   width: number;
+  /** 交叉点热区下限（pt/px）。格子更小时放大热区并吸附到最近交叉点。 */
+  minHit?: number;
   lastMove?: Point | null;
   /** 显式气点（教学层可直接传入）。 */
   liberties?: Point[];
@@ -34,6 +36,8 @@ interface GoBoardProps {
   libertyFocus?: Point | null;
   /** 即将落下的半透明预览子。 */
   preview?: { point: Point; color: Color } | null;
+  /** 提示灯指出的交叉点。 */
+  suggestion?: Point | null;
   hint?: BoardHint | null;
   /** 递增时棋盘轻轻左右摇，表示这步放不下。 */
   shakeSignal?: number;
@@ -80,6 +84,24 @@ export function isWithinSnap(locationX: number | undefined, locationY: number | 
   return Math.abs(locationX - half) <= half + 0.01 && Math.abs(locationY - half) <= half + 0.01;
 }
 
+/** 把棋盘坐标吸到最近交叉点。热区半径至少是 minHit 的一半。 */
+export function nearestPoint(
+  locationX: number,
+  locationY: number,
+  size: number,
+  grid: number,
+  minHit: number,
+): Point | null {
+  if (!Number.isFinite(locationX) || !Number.isFinite(locationY)) return null;
+  const x = Math.min(size - 1, Math.max(0, Math.round(locationX / grid - 0.5)));
+  const y = Math.min(size - 1, Math.max(0, Math.round(locationY / grid - 0.5)));
+  const cx = (x + 0.5) * grid;
+  const cy = (y + 0.5) * grid;
+  const reach = Math.max(grid, minHit) / 2;
+  if (Math.max(Math.abs(locationX - cx), Math.abs(locationY - cy)) <= reach + 0.01) return { x, y };
+  return null;
+}
+
 function flower(cx: number, cy: number, r: number) {
   const petals = [0, 72, 144, 216, 288].map((deg) => {
     const a = ((deg - 90) * Math.PI) / 180;
@@ -91,10 +113,12 @@ function flower(cx: number, cy: number, r: number) {
 export function GoBoard({
   board,
   width,
+  minHit = 56,
   lastMove = null,
   liberties,
   libertyFocus = null,
   preview = null,
+  suggestion = null,
   hint = null,
   shakeSignal = 0,
   flying = null,
@@ -102,6 +126,7 @@ export function GoBoard({
 }: GoBoardProps) {
   const size = board.size;
   const grid = width / size;
+  const hit = Math.max(grid, minHit);
   const center = (i: number) => (i + 0.5) * grid;
   const stoneR = grid * 0.46;
   const [pressed, setPressed] = useState<Point | null>(null);
@@ -127,8 +152,15 @@ export function GoBoard({
 
   const onPointPress = (point: Point, event: GestureResponderEvent) => {
     const { locationX, locationY } = event.nativeEvent;
-    if (!isWithinSnap(locationX, locationY, grid)) return;
+    if (!isWithinSnap(locationX, locationY, hit)) return;
     onPressPoint(point);
+  };
+
+  const onBoardPress = (event: GestureResponderEvent) => {
+    const { locationX, locationY } = event.nativeEvent;
+    if (typeof locationX !== 'number' || typeof locationY !== 'number') return;
+    const point = nearestPoint(locationX, locationY, size, grid, minHit);
+    if (point) onPressPoint(point);
   };
 
   const hoshi = HOSHI[size] ?? [];
@@ -190,6 +222,16 @@ export function GoBoard({
             opacity={0.55}
           />
         ) : null}
+        {suggestion ? (
+          <Circle
+            cx={center(suggestion.x)}
+            cy={center(suggestion.y)}
+            r={stoneR * 1.05}
+            fill="none"
+            stroke={colors.star}
+            strokeWidth={4}
+          />
+        ) : null}
         {showLast ? (
           <Circle
             cx={center(lastMove.x)}
@@ -245,6 +287,36 @@ export function GoBoard({
         />
       ))}
 
+      {preview ? (
+        <View
+          testID={`preview-${preview.point.x}-${preview.point.y}`}
+          accessibilityLabel={`预览 ${preview.color === 'black' ? '黑子' : '白子'} ${preview.point.x},${preview.point.y}`}
+          pointerEvents="none"
+          style={{
+            position: 'absolute',
+            left: center(preview.point.x) - 4,
+            top: center(preview.point.y) - 4,
+            width: 8,
+            height: 8,
+          }}
+        />
+      ) : null}
+
+      {suggestion ? (
+        <View
+          testID={`suggestion-${suggestion.x}-${suggestion.y}`}
+          accessibilityLabel="看看这里"
+          pointerEvents="none"
+          style={{
+            position: 'absolute',
+            left: center(suggestion.x) - 4,
+            top: center(suggestion.y) - 4,
+            width: 8,
+            height: 8,
+          }}
+        />
+      ) : null}
+
       {showLast ? (
         <View
           testID="last-move"
@@ -278,15 +350,22 @@ export function GoBoard({
               onPress={(event) => onPointPress({ x, y }, event)}
               style={{
                 position: 'absolute',
-                left: x * grid,
-                top: y * grid,
-                width: grid,
-                height: grid,
+                left: x * grid + (grid - hit) / 2,
+                top: y * grid + (grid - hit) / 2,
+                width: hit,
+                height: hit,
               }}
             />
           );
         }),
       )}
+
+      <Pressable
+        testID="board-touch"
+        accessible={false}
+        onPress={onBoardPress}
+        style={StyleSheet.absoluteFill}
+      />
 
       {hint ? <HintBubble hint={hint} grid={grid} center={center} /> : null}
     </Animated.View>

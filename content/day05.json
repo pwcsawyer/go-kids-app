@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "id": "day05",
+  "day": 5,
+  "week": 1,
+  "title": "一家人一起呼吸",
+  "knowledgePoints": [
+    3,
+    4
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 430
+  },
+  "pass": {
+    "minCorrect": 6,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day05"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day05",
+      "script": [
+        {
+          "voice": "v_day05_l1",
+          "text": "手拉手的小熊是一家人"
+        },
+        {
+          "voice": "v_day05_l2",
+          "text": "一家人的小洞要一起数"
+        },
+        {
+          "voice": "v_day05_l3",
+          "text": "白兔挡住的路口就不是小洞了"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day05-p01",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".XX..",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day05_p01",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 6,
+            "points": [
+              {
+                "x": 1,
+                "y": 1
+              },
+              {
+                "x": 2,
+                "y": 1
+              },
+              {
+                "x": 0,
+                "y": 2
+              },
+              {
+                "x": 3,
+                "y": 2
+              },
+              {
+                "x": 1,
+                "y": 3
+              },
+              {
+                "x": 2,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 1,
+            "y": 2
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day05-p02",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "...O.",
+            "...XO",
+            "...XO"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day05_p02",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 2,
+            "points": [
+              {
+                "x": 2,
+                "y": 3
+              },
+              {
+                "x": 2,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 3,
+            "y": 3
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day05-p03",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "X....",
+            "X....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day05_p03",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 4,
+            "points": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 1,
+                "y": 1
+              },
+              {
+                "x": 1,
+                "y": 2
+              },
+              {
+                "x": 0,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 1
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day05-p04",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            "...O.",
+            "..OX.",
+            "..OX.",
+            "...O.",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day05_p04",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 2,
+            "points": [
+              {
+                "x": 4,
+                "y": 1
+              },
+              {
+                "x": 4,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 3,
+            "y": 1
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day05-p05",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "...X.",
+            "...XX",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day05_p05",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 6,
+            "points": [
+              {
+                "x": 3,
+                "y": 1
+              },
+              {
+                "x": 2,
+                "y": 2
+              },
+              {
+                "x": 4,
+                "y": 2
+              },
+              {
+                "x": 2,
+                "y": 3
+              },
+              {
+                "x": 3,
+                "y": 4
+              },
+              {
+                "x": 4,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 4,
+            "y": 3
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day05-p06",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            "..XXX",
+            "...OO",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day05_p06",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 2,
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              },
+              {
+                "x": 2,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 2,
+            "y": 0
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day05-p07",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "..XX.",
+            "..X..",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day05_p07",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 7,
+            "points": [
+              {
+                "x": 2,
+                "y": 0
+              },
+              {
+                "x": 3,
+                "y": 0
+              },
+              {
+                "x": 1,
+                "y": 1
+              },
+              {
+                "x": 4,
+                "y": 1
+              },
+              {
+                "x": 1,
+                "y": 2
+              },
+              {
+                "x": 3,
+                "y": 2
+              },
+              {
+                "x": 2,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 2,
+            "y": 1
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day05-p08",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            "....O",
+            "...OX",
+            "..OXX",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day05_p08",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 2,
+            "points": [
+              {
+                "x": 3,
+                "y": 3
+              },
+              {
+                "x": 4,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 4,
+            "y": 1
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day05_pm",
+      "text": "请宝宝用手指点一遍所有小洞，家长跟着数",
+      "durationSec": 15
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day05",
+      "badge": null,
+      "durationSec": 20
+    }
+  ]
+}

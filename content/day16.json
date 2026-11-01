@@ -1,0 +1,362 @@
+{
+  "schemaVersion": 1,
+  "id": "day16",
+  "day": 16,
+  "week": 3,
+  "title": "禁入点的例外：能吃就能下",
+  "knowledgePoints": [
+    7
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 580
+  },
+  "pass": {
+    "minCorrect": 6,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day16"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 120,
+      "animation": "anim_day16",
+      "script": [
+        {
+          "voice": "v_day16_l1",
+          "text": "如果住进去能吃掉狐狸，狐狸被拿走就有洞了"
+        },
+        {
+          "voice": "v_day16_l2",
+          "text": "所以能吃子的路口可以下"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day16-p01",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".X...",
+            "XOXOX",
+            "X..O.",
+            ".X.O.",
+            "OXO.O"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day16_p01",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": true,
+            "reason": "capture"
+          },
+          "hints": [
+            "放进去能吃掉狐狸，吃掉就有洞啦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 3
+          },
+          "highlight": [
+            {
+              "x": 0,
+              "y": 3
+            }
+          ]
+        },
+        {
+          "id": "day16-p02",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".XOO.",
+            "O.XO.",
+            "XOO.O",
+            "..OXX",
+            ".OOOX"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day16_p02",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": false,
+            "reason": "suicide"
+          },
+          "hints": [
+            "放进去一口气都没有，憋住了"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 3,
+            "y": 2
+          },
+          "highlight": [
+            {
+              "x": 3,
+              "y": 2
+            }
+          ]
+        },
+        {
+          "id": "day16-p03",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            "OOX.O",
+            "O....",
+            "X.X.O",
+            "OOX.X",
+            "X.OX."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day16_p03",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": true,
+            "reason": "capture"
+          },
+          "hints": [
+            "放进去能吃掉狐狸，吃掉就有洞啦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 1,
+            "y": 4
+          },
+          "highlight": [
+            {
+              "x": 1,
+              "y": 4
+            }
+          ]
+        },
+        {
+          "id": "day16-p04",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            "X.XOX",
+            ".X.OX",
+            "OOXXX",
+            "OOX..",
+            "OO.X."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day16_p04",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": true,
+            "reason": "normal"
+          },
+          "hints": [
+            "放进去还有小洞可以呼吸"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 4,
+            "y": 3
+          },
+          "highlight": [
+            {
+              "x": 4,
+              "y": 3
+            }
+          ]
+        },
+        {
+          "id": "day16-p05",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            "O.XOO",
+            "O..X.",
+            "..O.X",
+            "XO.XX",
+            "XXXX."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day16_p05",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": true,
+            "reason": "capture"
+          },
+          "hints": [
+            "放进去能吃掉狐狸，吃掉就有洞啦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 4,
+            "y": 1
+          },
+          "highlight": [
+            {
+              "x": 4,
+              "y": 1
+            }
+          ]
+        },
+        {
+          "id": "day16-p06",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            "XXO..",
+            ".O.X.",
+            ".O..O",
+            "OX..O",
+            ".O.O."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day16_p06",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": false,
+            "reason": "suicide"
+          },
+          "hints": [
+            "放进去一口气都没有，憋住了"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 4
+          },
+          "highlight": [
+            {
+              "x": 0,
+              "y": 4
+            }
+          ]
+        },
+        {
+          "id": "day16-p07",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            ".OXXO",
+            "XXX..",
+            "..XOO",
+            ".XXX.",
+            "..OOO"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day16_p07",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": true,
+            "reason": "capture"
+          },
+          "hints": [
+            "放进去能吃掉狐狸，吃掉就有洞啦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 0
+          },
+          "highlight": [
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "day16-p08",
+          "kind": "judge",
+          "boardSize": 5,
+          "board": [
+            "OO.O.",
+            "X.OOX",
+            ".X..O",
+            "XX.OO",
+            "OOO.O"
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day16_p08",
+            "text": "小熊可以住进闪光的路口吗？"
+          },
+          "answer": {
+            "value": false,
+            "reason": "suicide"
+          },
+          "hints": [
+            "放进去一口气都没有，憋住了"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 4,
+            "y": 0
+          },
+          "highlight": [
+            {
+              "x": 4,
+              "y": 0
+            }
+          ]
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day16_pm",
+      "text": "让宝宝说一说：为什么这里可以下？",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "parent_same_device",
+      "boardSize": 5,
+      "ai": null,
+      "hintBulbs": 0,
+      "win": "first_capture",
+      "endRules": null,
+      "durationSec": 180,
+      "captureTarget": 1,
+      "noLegalMoveLoses": true
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day16",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": 1
+}

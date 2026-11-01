@@ -1,0 +1,574 @@
+{
+  "schemaVersion": 1,
+  "id": "day06",
+  "day": 6,
+  "week": 1,
+  "title": "复习闯关：数气",
+  "knowledgePoints": [
+    3,
+    4
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 480
+  },
+  "pass": {
+    "minCorrect": 7,
+    "of": 10
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day06"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day06",
+      "script": [
+        {
+          "voice": "v_day06_l1",
+          "text": "今天是闯关日！"
+        },
+        {
+          "voice": "v_day06_l2",
+          "text": "数对一关，点亮一颗星星"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day06-p01",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            "..X..",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day06_p01",
+            "text": "小熊有几个呼吸的小洞？点数字"
+          },
+          "answer": {
+            "count": 4,
+            "points": [
+              {
+                "x": 2,
+                "y": 0
+              },
+              {
+                "x": 1,
+                "y": 1
+              },
+              {
+                "x": 3,
+                "y": 1
+              },
+              {
+                "x": 2,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "用手指点一点棋子旁边直直的路口"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 2,
+            "y": 1
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "day06-p02",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            "X....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day06_p02",
+            "text": "小熊有几个呼吸的小洞？点数字"
+          },
+          "answer": {
+            "count": 2,
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              },
+              {
+                "x": 0,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "用手指点一点棋子旁边直直的路口"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 0
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "day06-p03",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            "X....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day06_p03",
+            "text": "小熊有几个呼吸的小洞？点数字"
+          },
+          "answer": {
+            "count": 2,
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              },
+              {
+                "x": 0,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "用手指点一点棋子旁边直直的路口"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 0
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "day06-p04",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            "..X..",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day06_p04",
+            "text": "小熊有几个呼吸的小洞？点数字"
+          },
+          "answer": {
+            "count": 3,
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              },
+              {
+                "x": 3,
+                "y": 0
+              },
+              {
+                "x": 2,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "用手指点一点棋子旁边直直的路口"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 2,
+            "y": 0
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "day06-p05",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            "X....",
+            "XO...",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day06_p05",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 2,
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              },
+              {
+                "x": 0,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 0
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day06-p06",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".O...",
+            "XX..."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day06_p06",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 2,
+            "points": [
+              {
+                "x": 0,
+                "y": 3
+              },
+              {
+                "x": 2,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 4
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day06-p07",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            "X....",
+            "XXO.."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day06_p07",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 2,
+            "points": [
+              {
+                "x": 0,
+                "y": 2
+              },
+              {
+                "x": 1,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 0,
+            "y": 4
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day06-p08",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".XXO.",
+            "..O..",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day06_p08",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 4,
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              },
+              {
+                "x": 2,
+                "y": 0
+              },
+              {
+                "x": 0,
+                "y": 1
+              },
+              {
+                "x": 1,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 1,
+            "y": 1
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day06-p09",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            "...XO",
+            "..OXO",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day06_p09",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 3,
+            "points": [
+              {
+                "x": 3,
+                "y": 1
+              },
+              {
+                "x": 2,
+                "y": 2
+              },
+              {
+                "x": 3,
+                "y": 4
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 3,
+            "y": 2
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "day06-p10",
+          "kind": "count_liberties",
+          "boardSize": 5,
+          "board": [
+            "O....",
+            "XXO..",
+            ".O...",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day06_p10",
+            "text": "这一家小熊一共有几个呼吸的小洞？"
+          },
+          "answer": {
+            "count": 2,
+            "points": [
+              {
+                "x": 1,
+                "y": 0
+              },
+              {
+                "x": 0,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "手拉手的小熊一起呼吸，一起数"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "target": {
+            "x": 1,
+            "y": 1
+          },
+          "showLiberties": true,
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "durationSec": 250
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day06_pm",
+      "text": "让宝宝当小老师，给爸爸妈妈讲什么是气",
+      "durationSec": 15
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day06",
+      "badge": null,
+      "durationSec": 20
+    }
+  ]
+}

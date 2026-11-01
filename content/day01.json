@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "id": "day01",
+  "day": 1,
+  "week": 1,
+  "title": "认识棋盘：路口",
+  "knowledgePoints": [
+    1
+  ],
+  "boardSize": 5,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 430
+  },
+  "pass": {
+    "minCorrect": 6,
+    "of": 8
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day01"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day01",
+      "script": [
+        {
+          "voice": "v_day01_l1",
+          "text": "这是围棋棋盘，像一张小路网"
+        },
+        {
+          "voice": "v_day01_l2",
+          "text": "棋子住在路口，就是两条线交叉的地方"
+        },
+        {
+          "voice": "v_day01_l3",
+          "text": "放进格子里，棋子会弹回来哦"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day01-p01",
+          "kind": "place_on_point",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day01_p01",
+            "text": "把小熊棋子放到发光的路口上"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 0,
+                "y": 0
+              }
+            ]
+          },
+          "hints": [
+            "棋子住在路口，不住在格子里哦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "highlight": [
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "day01-p02",
+          "kind": "place_on_point",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day01_p02",
+            "text": "把小熊棋子放到发光的路口上"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 3,
+                "y": 0
+              }
+            ]
+          },
+          "hints": [
+            "棋子住在路口，不住在格子里哦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "highlight": [
+            {
+              "x": 3,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "day01-p03",
+          "kind": "place_on_point",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day01_p03",
+            "text": "把小熊棋子放到发光的路口上"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 0,
+                "y": 0
+              }
+            ]
+          },
+          "hints": [
+            "棋子住在路口，不住在格子里哦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "highlight": [
+            {
+              "x": 0,
+              "y": 0
+            }
+          ]
+        },
+        {
+          "id": "day01-p04",
+          "kind": "place_on_point",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day01_p04",
+            "text": "把小熊棋子放到发光的路口上"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 1,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "棋子住在路口，不住在格子里哦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "highlight": [
+            {
+              "x": 1,
+              "y": 2
+            }
+          ]
+        },
+        {
+          "id": "day01-p05",
+          "kind": "place_on_point",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day01_p05",
+            "text": "把小熊棋子放到发光的路口上"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 2,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "棋子住在路口，不住在格子里哦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "highlight": [
+            {
+              "x": 2,
+              "y": 1
+            }
+          ]
+        },
+        {
+          "id": "day01-p06",
+          "kind": "place_on_point",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day01_p06",
+            "text": "把小熊棋子放到发光的路口上"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 1,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "棋子住在路口，不住在格子里哦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "highlight": [
+            {
+              "x": 1,
+              "y": 3
+            }
+          ]
+        },
+        {
+          "id": "day01-p07",
+          "kind": "place_on_point",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day01_p07",
+            "text": "把小熊棋子放到发光的路口上"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 4,
+                "y": 3
+              }
+            ]
+          },
+          "hints": [
+            "棋子住在路口，不住在格子里哦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "highlight": [
+            {
+              "x": 4,
+              "y": 3
+            }
+          ]
+        },
+        {
+          "id": "day01-p08",
+          "kind": "place_on_point",
+          "boardSize": 5,
+          "board": [
+            ".....",
+            ".....",
+            ".....",
+            ".....",
+            "....."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day01_p08",
+            "text": "把小熊棋子放到发光的路口上"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 0,
+                "y": 1
+              }
+            ]
+          },
+          "hints": [
+            "棋子住在路口，不住在格子里哦"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "highlight": [
+            {
+              "x": 0,
+              "y": 1
+            }
+          ]
+        }
+      ],
+      "durationSec": 200
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day01_pm",
+      "text": "请爸爸妈妈指一个路口，让宝宝放一颗棋子",
+      "durationSec": 15
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day01",
+      "badge": null,
+      "durationSec": 20
+    }
+  ]
+}

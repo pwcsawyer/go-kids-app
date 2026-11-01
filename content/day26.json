@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "id": "day26",
+  "day": 26,
+  "week": 4,
+  "title": "9 路初体验",
+  "knowledgePoints": [
+    19,
+    18
+  ],
+  "boardSize": 9,
+  "timing": {
+    "targetSec": 540,
+    "hardStopSec": 600,
+    "endVoice": "v_bear_sleep",
+    "estimatedSec": 555
+  },
+  "pass": {
+    "minCorrect": 1,
+    "of": 1
+  },
+  "segments": [
+    {
+      "type": "parent_intro",
+      "durationSec": 45,
+      "parentCardId": "day26"
+    },
+    {
+      "type": "micro_lesson",
+      "durationSec": 150,
+      "animation": "anim_day26",
+      "script": [
+        {
+          "voice": "v_day26_l1",
+          "text": "棋盘变大啦！先占角，再连起来"
+        },
+        {
+          "voice": "v_day26_l2",
+          "text": "有 3 盏提示灯，不会的时候可以点"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "levels": [
+        {
+          "id": "day26-p01",
+          "kind": "choose_option",
+          "boardSize": 9,
+          "board": [
+            ".........",
+            ".........",
+            ".........",
+            ".........",
+            ".........",
+            ".........",
+            ".........",
+            ".........",
+            "........."
+          ],
+          "toPlay": "black",
+          "prompt": {
+            "voice": "v_day26_p01",
+            "text": "第一步放哪里最省力？金角银边草肚皮"
+          },
+          "answer": {
+            "points": [
+              {
+                "x": 2,
+                "y": 2
+              }
+            ]
+          },
+          "hints": [
+            "角落有两面墙帮忙，最省力"
+          ],
+          "maxAttempts": 3,
+          "onFail": "auto_demo",
+          "options": [
+            {
+              "x": 4,
+              "y": 0
+            },
+            {
+              "x": 2,
+              "y": 2
+            },
+            {
+              "x": 4,
+              "y": 4
+            }
+          ]
+        }
+      ],
+      "durationSec": 25
+    },
+    {
+      "type": "parent_moment",
+      "voice": "v_day26_pm",
+      "text": "和宝宝讨论一步棋：“为什么下这里？”",
+      "durationSec": 15
+    },
+    {
+      "type": "game",
+      "mode": "vs_ai",
+      "boardSize": 9,
+      "ai": "beginner",
+      "hintBulbs": 3,
+      "win": "score",
+      "endRules": {
+        "passEnabled": false,
+        "autoEndWhenOnlyOwnTrueEyes": true,
+        "endPopupVoice": "v_game_end_count",
+        "parentEndButton": true,
+        "moveLimit": {
+          "5": 40,
+          "7": 80,
+          "9": 120
+        },
+        "deadStones": "ai_mark_parent_confirm",
+        "scoring": "chinese_area",
+        "komi": 0
+      },
+      "durationSec": 300
+    },
+    {
+      "type": "reward",
+      "sticker": "sticker_day26",
+      "badge": null,
+      "durationSec": 20
+    }
+  ],
+  "captureTarget": null,
+  "device": {
+    "minBoardCellPt": 44,
+    "preferredDevice": "ipad"
+  }
+}
