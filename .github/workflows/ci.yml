@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - name: 安装依赖
+        working-directory: app
+        run: npm ci
+      - name: tsc
+        working-directory: app
+        run: npx tsc --noEmit
+      - name: jest
+        working-directory: app
+        run: npx jest --ci --watchAll=false
+      - name: 编译引擎供关卡校验
+        working-directory: app
+        run: npx tsc src/engine/index.ts --ignoreConfig --outDir /tmp/eng --module commonjs --target es2020 --skipLibCheck --esModuleInterop
+      - name: validate-with-engine
+        run: node content/tools/validate-with-engine.js /tmp/eng/index.js
