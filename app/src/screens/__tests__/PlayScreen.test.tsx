@@ -1,6 +1,7 @@
-import { render, screen, userEvent } from '@testing-library/react-native';
+import { fireEvent, render, screen, userEvent } from '@testing-library/react-native';
 import { Dimensions, StyleSheet } from 'react-native';
 import { Board, Game } from '../../engine';
+import { MAC_WINDOW } from '../../ui/macWindow';
 import { PlayScreen, fitBoard } from '../PlayScreen';
 
 jest.mock('../../ui/timing', () => ({
@@ -31,7 +32,7 @@ async function place(user: ReturnType<typeof userEvent.setup>, x: number, y: num
 }
 
 describe('双人同屏对局', () => {
-  beforeEach(() => setWindow(1180, 820));
+  beforeEach(() => setWindow(MAC_WINDOW.defaultWidth, MAC_WINDOW.defaultHeight));
 
   test('默认 5 路，横屏棋盘在左、按钮在右', async () => {
     await render(<PlayScreen />);
@@ -169,5 +170,41 @@ describe('双人同屏对局', () => {
     expect(fitBoard(1180, 820, 9).cell).toBeGreaterThanOrEqual(56);
     expect(fitBoard(1133, 744, 9).cell).toBeGreaterThanOrEqual(56);
     expect(fitBoard(744, 1133, 9).cell).toBeGreaterThanOrEqual(56);
+  });
+
+  test('Mac 默认窗口是横屏，最小窗口上 5/7/9 路格子都不小于 56', () => {
+    expect(MAC_WINDOW.defaultWidth).toBeGreaterThan(MAC_WINDOW.defaultHeight);
+    expect(MAC_WINDOW.minWidth).toBeGreaterThan(MAC_WINDOW.minHeight);
+    for (const size of [5, 7, 9]) {
+      expect(fitBoard(MAC_WINDOW.defaultWidth, MAC_WINDOW.defaultHeight, size).cell).toBeGreaterThanOrEqual(56);
+      expect(fitBoard(MAC_WINDOW.minWidth, MAC_WINDOW.minHeight, size).cell).toBeGreaterThanOrEqual(56);
+    }
+    const fitted = fitBoard(MAC_WINDOW.minWidth, MAC_WINDOW.minHeight, 9);
+    expect(fitted.landscape).toBe(true);
+    expect(fitted.boardPx).toBeLessThanOrEqual(MAC_WINDOW.minHeight);
+    expect(fitted.boardPx + 208).toBeLessThanOrEqual(MAC_WINDOW.minWidth);
+  });
+
+  test('最小 Mac 窗口仍是横屏，9 路热区不小于 56', async () => {
+    setWindow(MAC_WINDOW.minWidth, MAC_WINDOW.minHeight);
+    await render(<PlayScreen initialGame={new Game(9)} />);
+    const layout = StyleSheet.flatten(screen.getByTestId('play-layout').props.style);
+    expect(layout.flexDirection).toBe('row');
+    const hit = StyleSheet.flatten(screen.getByTestId('point-4-4').props.style);
+    expect(hit.width).toBeGreaterThanOrEqual(56);
+    expect(hit.height).toBeGreaterThanOrEqual(56);
+  });
+
+  test('触控板单击先出预览，再点同一点才落子', async () => {
+    await render(<PlayScreen />);
+    const { boardPx } = fitBoard(MAC_WINDOW.defaultWidth, MAC_WINDOW.defaultHeight, 5);
+    const grid = boardPx / 5;
+    const press = { nativeEvent: { locationX: 1.5 * grid, locationY: 1.5 * grid } };
+    await fireEvent.press(screen.getByTestId('board-touch'), press);
+    expect(screen.getByTestId('preview-1-1')).toBeTruthy();
+    expect(screen.queryByLabelText('黑子 1,1')).toBeNull();
+    await fireEvent.press(screen.getByTestId('board-touch'), press);
+    expect(await screen.findByLabelText('黑子 1,1')).toBeTruthy();
+    expect(screen.getByTestId('turn-white')).toBeTruthy();
   });
 });

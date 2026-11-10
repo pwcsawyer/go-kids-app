@@ -24,7 +24,7 @@
 - 识字 < 100，**不依赖文字**；能数到 20~50；注意力 8~12 分钟。
 - 小手指精度低：易误触、拖拽中途松手；喜欢小动物、贴纸、被表扬。
 - 挫败容忍低：连续错 2~3 次易放弃；喜欢重复玩熟悉的游戏。
-- 设备：v1 只支持 iPad（陪学场景最常见）。Mac 版后续通过 iPad App 在 Apple 芯片 Mac 上运行的方式提供；手机和安卓暂不做。
+- 设备：v1 发行一份 iPad 应用（陪学场景最常见）。首个内测目标是 Apple 芯片 Mac（MacBook Pro M3 Pro），用「Designed for iPad」运行这份 iPad 包。原生 macOS（AppKit）要等 Expo SDK 支持；iPhone 和 Android 不在 v1。
 
 ### 2.2 家长：乐乐妈妈，32 岁，上班族
 - **自己不会下围棋或只懂一点**，担心"教错"；每天晚饭后可陪 10~15 分钟。
@@ -183,7 +183,7 @@ v1 不提供"虚手/停一手"按钮（5 岁孩子难以理解），对局按以
 
 | 类别 | 要求 |
 |---|---|
-| 平台 | v1 仅 iPad（iPadOS 15+，横竖屏）；Expo/React Native。Mac 后续以 iPad App 方式运行；iPhone、Android 不在 v1 范围 |
+| 平台 | v1 发行 iPad 应用（iPadOS 16.4+，横竖屏；Expo SDK 58 / React Native）。同一份二进制在 Apple 芯片 Mac 上以「Designed for iPad」运行，这是首个内测目标（M3 Pro）。不是原生 macOS AppKit 应用；原生 macOS 要等 Expo SDK 支持 react-native-macos。iPhone、Android 不在 v1 |
 | 性能 | 冷启动 < 3s（iPad 第 9 代）；落子到反馈 ≤ 200ms；动画 ≥ 55fps；规则引擎单次落子计算 < 5ms（9 路） |
 | 离线 | 28 节课全部离线可用；安装包 ≤ 150MB 或首启下载资源 ≤ 100MB |
 | 稳定性 | 崩溃率 < 0.5%（会话）；断电/切后台恢复到当前题 |
@@ -221,4 +221,5 @@ v1 不提供"虚手/停一手"按钮（5 岁孩子难以理解），对局按以
 
 
 ## 变更记录
+- 2026-11-10：首个内测目标定为 Apple 芯片 Mac（M3 Pro），用「Designed for iPad」运行同一份 iPad 包。发行物仍是这份 iPad 二进制，也能在 Apple 芯片 Mac 上玩现有棋盘。`requireFullScreen` 改为 false：Apple 从 iPadOS 26 / iOS 27 起不再用该键退出缩放（TN3192；Expo SDK 58 说明），可缩放的 Mac 窗口需要关掉全屏兼容模式并保留四个方向。部署目标改为 iPadOS 16.4（Expo SDK 58 / expo-modules-core 的最低版本）。触控板单击沿用点按预览再确认。原生 macOS 仍不做。iPhone、Android 仍不在 v1。
 - 2026-11-01：v1 平台定为仅 iPad；Mac 版后续通过 iPad App 在 Mac 上运行的方式提供（用户拍板，经设计同步）。

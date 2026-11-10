@@ -4,26 +4,25 @@
     "slug": "app",
     "version": "1.0.0",
     "orientation": "default",
+    "platforms": ["ios"],
     "backgroundColor": "#FFF8EC",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
+      "bundleIdentifier": "com.pwcsawyer.gokids",
       "supportsTablet": true,
       "isTabletOnly": true,
-      "requireFullScreen": true,
-      "deploymentTarget": "15.0"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
-      },
-      "predictiveBackGestureEnabled": false
+      "requireFullScreen": false,
+      "deploymentTarget": "16.4",
+      "infoPlist": {
+        "UIApplicationSupportsIndirectInputEvents": true,
+        "UISupportsTrueScreenSizeOnMac": true,
+        "UILaunchToFullScreenByDefaultOnMac": false
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": ["./plugins/withDesignedForIpad"]
   }
 }

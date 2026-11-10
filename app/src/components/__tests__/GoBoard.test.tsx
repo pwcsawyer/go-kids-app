@@ -28,6 +28,16 @@ describe('GoBoard', () => {
     expect(press.onPressPoint).toHaveBeenCalledWith({ x: 2, y: 3 });
   });
 
+  test('单击棋盘层会吸附到最近交叉点', async () => {
+    const width = 300;
+    const grid = width / 5;
+    await renderBoard(new Board(5), width);
+    await fireEvent.press(screen.getByTestId('board-touch'), {
+      nativeEvent: { locationX: 2.5 * grid, locationY: 3.5 * grid },
+    });
+    expect(press.onPressPoint).toHaveBeenCalledWith({ x: 2, y: 3 });
+  });
+
   test('格子外不吸附，格子内可以', async () => {
     const width = 300;
     const grid = width / 5;

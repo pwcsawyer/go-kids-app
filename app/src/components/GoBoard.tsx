@@ -361,6 +361,7 @@ export function GoBoard({
         }),
       )}
 
+      {/* 手指和触控板单击都落在这层：系统把单击转成触摸，再吸附到交叉点。 */}
       <Pressable
         testID="board-touch"
         accessible={false}
