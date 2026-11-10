@@ -165,8 +165,9 @@ describe('双人同屏对局', () => {
     expect(hit.height).toBeGreaterThanOrEqual(56);
   });
 
-  test('iPad 横竖屏 9 路格子都不小于 56', () => {
+  test('横屏、竖屏和 Mac 最小窗口的 9 路格子都不小于 56', () => {
     expect(fitBoard(1180, 820, 9).cell).toBeGreaterThanOrEqual(56);
+    expect(fitBoard(1000, 760, 9).cell).toBeGreaterThanOrEqual(56);
     expect(fitBoard(1133, 744, 9).cell).toBeGreaterThanOrEqual(56);
     expect(fitBoard(744, 1133, 9).cell).toBeGreaterThanOrEqual(56);
   });

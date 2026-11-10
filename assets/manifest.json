@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "platform": "iPad first (landscape)",
+  "platform": "Mac desktop first (no Xcode); iPhone and Android out of v1",
   "basedOn": "PRD v1.0 §5.4 已定决策 + F02",
   "note": "sfx/voice 全部为占位素材，可按同名替换",
   "assets": [

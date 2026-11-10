@@ -3,9 +3,19 @@ import { assetSource, sfxIds, type SfxId } from './assets';
 
 const cache = new Map<SfxId, HTMLAudioElement>();
 
+/**
+ * 原生 require 得到资源编号，要用 resolveAssetSource。
+ * Web 导出直接是 { uri }，而 react-native-web 的 Image 没有 resolveAssetSource。
+ */
 function uriOf(id: SfxId): string | undefined {
-  const resolved = Image.resolveAssetSource(assetSource(id));
-  return resolved?.uri;
+  const source = assetSource(id);
+  if (typeof source === 'string') return source;
+  if (typeof source === 'object' && source != null && 'uri' in source && typeof source.uri === 'string') {
+    return source.uri;
+  }
+  const resolve = (Image as { resolveAssetSource?: (asset: number) => { uri?: string } | undefined }).resolveAssetSource;
+  if (typeof source === 'number' && typeof resolve === 'function') return resolve(source)?.uri;
+  return undefined;
 }
 
 /** 启动时预加载 manifest 里的音效，点击时不再临时读文件。 */
@@ -39,4 +49,8 @@ export function playSfx(id: SfxId) {
   }
 }
 
-preloadSfx();
+try {
+  preloadSfx();
+} catch {
+  /* 音效读不出来时，棋盘和落子仍然可用 */
+}

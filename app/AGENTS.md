@@ -1,4 +1,4 @@
-This is an Expo/React Native mobile application. Prioritize mobile-first patterns, performance, and cross-platform compatibility.
+This is an Expo/React Native application. The current first internal test is a Mac desktop app: Expo web wrapped in Electron (`npm run mac`). Do not add react-native-macos, Mac Catalyst, AppKit, SwiftUI, Xcode projects, CocoaPods, or `expo prebuild -p ios`. Do not downgrade Expo SDK 58. iPhone and Android stay out of v1.
 
 ## Expo has changed — do not trust your training data
 

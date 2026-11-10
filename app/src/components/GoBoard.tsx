@@ -85,6 +85,38 @@ export function isWithinSnap(locationX: number | undefined, locationY: number | 
   return Math.abs(locationX - half) <= half + 0.01 && Math.abs(locationY - half) <= half + 0.01;
 }
 
+/**
+ * 鼠标在 react-native-web 上走 click，nativeEvent 是 DOM MouseEvent，没有 locationX。
+ * 有 locationX 时用它（原生和测试）；否则用 clientX 相对当前节点换算。
+ */
+export function pressLocation(event: GestureResponderEvent): { x: number; y: number } | null {
+  const native = event.nativeEvent as GestureResponderEvent['nativeEvent'] & {
+    clientX?: number;
+    clientY?: number;
+    target?: unknown;
+  };
+  if (
+    typeof native.locationX === 'number' &&
+    typeof native.locationY === 'number' &&
+    Number.isFinite(native.locationX) &&
+    Number.isFinite(native.locationY)
+  ) {
+    return { x: native.locationX, y: native.locationY };
+  }
+  if (typeof native.clientX !== 'number' || typeof native.clientY !== 'number') return null;
+  const node = boxOf(event.currentTarget) ?? boxOf(native.target);
+  if (!node) return null;
+  const rect = node.getBoundingClientRect();
+  return { x: native.clientX - rect.left, y: native.clientY - rect.top };
+}
+
+function boxOf(value: unknown): { getBoundingClientRect(): { left: number; top: number } } | null {
+  if (value == null || typeof value !== 'object' || !('getBoundingClientRect' in value)) return null;
+  const rectOf = (value as { getBoundingClientRect?: unknown }).getBoundingClientRect;
+  if (typeof rectOf !== 'function') return null;
+  return value as { getBoundingClientRect(): { left: number; top: number } };
+}
+
 /** 把棋盘坐标吸到最近交叉点。热区半径至少是 minHit 的一半。 */
 export function nearestPoint(
   locationX: number,
@@ -152,15 +184,15 @@ export function GoBoard({
   }, [shakeSignal, shakeX]);
 
   const onPointPress = (point: Point, event: GestureResponderEvent) => {
-    const { locationX, locationY } = event.nativeEvent;
-    if (!isWithinSnap(locationX, locationY, hit)) return;
+    const loc = pressLocation(event);
+    if (loc && !isWithinSnap(loc.x, loc.y, hit)) return;
     onPressPoint(point);
   };
 
   const onBoardPress = (event: GestureResponderEvent) => {
-    const { locationX, locationY } = event.nativeEvent;
-    if (typeof locationX !== 'number' || typeof locationY !== 'number') return;
-    const point = nearestPoint(locationX, locationY, size, grid, minHit);
+    const loc = pressLocation(event);
+    if (!loc) return;
+    const point = nearestPoint(loc.x, loc.y, size, grid, minHit);
     if (point) onPressPoint(point);
   };
 

@@ -1,0 +1,32 @@
+appId: com.pwcsawyer.gokids
+productName: 五岁小朋友围棋学习
+directories:
+  output: release
+npmRebuild: false
+files:
+  - electron/**/*
+  - package.json
+  - "!node_modules"
+  - "!node_modules/**"
+extraResources:
+  - from: dist
+    to: dist
+    filter:
+      - "**/*"
+extraMetadata:
+  main: electron/main.js
+asar: true
+mac:
+  category: public.app-category.education
+  icon: assets/icon.png
+  target:
+    - target: dir
+      arch:
+        - arm64
+  identity: null
+  hardenedRuntime: false
+  gatekeeperAssess: false
+  extendInfo:
+    CFBundleDisplayName: 五岁小朋友围棋学习
+    CFBundleName: 五岁小朋友围棋学习
+    CFBundleIdentifier: com.pwcsawyer.gokids

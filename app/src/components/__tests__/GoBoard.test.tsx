@@ -2,7 +2,7 @@ import { render, screen, userEvent, fireEvent } from '@testing-library/react-nat
 import { StyleSheet } from 'react-native';
 import type { ComponentProps } from 'react';
 import { Board } from '../../engine';
-import { GoBoard, isWithinSnap, nearestPoint } from '../GoBoard';
+import { GoBoard, isWithinSnap, nearestPoint, pressLocation } from '../GoBoard';
 
 const press = { onPressPoint: jest.fn() };
 
@@ -56,6 +56,23 @@ describe('GoBoard', () => {
     const style = StyleSheet.flatten(screen.getByTestId('point-4-4').props.style);
     expect(style.width).toBeGreaterThanOrEqual(56);
     expect(style.height).toBeGreaterThanOrEqual(56);
+  });
+
+  test('网页鼠标没有 locationX 时，用 clientX 换算，有 locationX 时仍用它', () => {
+    const grid = 60;
+    expect(
+      pressLocation({
+        currentTarget: { getBoundingClientRect: () => ({ left: 10, top: 20 }) },
+        nativeEvent: { clientX: 10 + grid * 1.2, clientY: 20 + grid * 2.2 },
+      } as never),
+    ).toEqual({ x: grid * 1.2, y: grid * 2.2 });
+    expect(
+      pressLocation({
+        currentTarget: { getBoundingClientRect: () => ({ left: 0, top: 0 }) },
+        nativeEvent: { locationX: 12, locationY: 18, clientX: 99, clientY: 99 },
+      } as never),
+    ).toEqual({ x: 12, y: 18 });
+    expect(nearestPoint(grid * 2.5, grid * 3.5, 5, grid, 56)).toEqual({ x: 2, y: 3 });
   });
 
   test('格子小于 56 时放大热区并吸附到最近交叉点', async () => {

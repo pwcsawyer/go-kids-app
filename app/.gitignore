@@ -9,6 +9,9 @@ dist/
 web-build/
 expo-env.d.ts
 
+# Electron 打包产物（体积大，且未签名）
+release/
+
 # Native
 .kotlin/
 *.orig.*

@@ -1,6 +1,6 @@
 # assets（设计 M1/M2 素材 v0.1）
 
-依据 PRD v1.0（5.4 已定决策 / F02）；首发 iPad 横屏。落子 = 点按预览 + 再点确认；可点格子 ≥56pt 并吸附；棋盘用 react-native-svg 渲染。完整清单与时长见 `manifest.json`。
+依据 PRD v1.0（5.4 已定决策 / F02）。2026-11-10 起，第一个内测是不需要 Xcode 的 Mac 桌面应用，不再把 iPad 当作第一次交付。落子 = 点按预览 + 再点确认；可点格子 ≥56pt 并吸附；棋盘用 react-native-svg 渲染。完整清单与时长见 `manifest.json`。
 
 | 目录 | 内容 |
 |---|---|
